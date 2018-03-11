@@ -1,37 +1,177 @@
 //todos.js
 
-const todos = (state=[], action) => {
+const INITIAL_STATE = { todos:[] };
+
+const addTodo = (state, action) => {
+	return {
+		...state,
+		todos:[
+			...state.todos,
+			{
+				id: action.id,
+				title: action.title,
+				completed: false,
+				items: [],
+			}
+		]
+	}
+};
+const mapTodo = ( state, action, mapTransform ) => {
+	return {
+		...state, 
+		todos: [
+				...state.todos.map(
+					todo =>
+						(todo.id === action.id)
+						? mapTransform(todo)
+						: todo
+				)
+			]
+	}
+};
+
+const filterTodo = ( state, action, filterFunc ) => {
+	return {
+		...state, 
+		todos: [
+				...state.todos.filter(
+					todo =>  filterFunc(todo)
+				)
+			]
+	}
+};
+
+const toggleTodo = (state,action) => {
+	return mapTodo(state, action, 
+		(todo) => {
+	 		return {...todo, completed: !todo.completed} 
+	 	}
+	);
+};
+
+const addItem = (state, action) => {
+	return mapTodo( state, action, (todo) => {
+		return { 
+			...todo,
+		 	items: [
+		 		...todo.items, 
+ 			 		{
+ 			 			todoId: action.id,
+ 			 			id: action.itemId,
+ 			 			title: action.itemTitle,
+ 			 			text: action.itemText,
+ 			 			completed: false,
+						contact: null,
+						image: null,
+ 			 		}
+	 		]
+		}
+	});
+};
+
+const mapItems = ( state, action, mapTransform ) => {
+	return mapTodo( state, action, (todo) => {
+			return { 
+				...todo,
+				items: todo.items.map( (item) =>
+					(item.id === action.itemId)
+					? mapTransform(item)
+					: item
+				)
+			}
+		}
+	)
+};
+
+const toggleItem = (state, action) => {
+	return mapItems( state, action, (item) => {
+			return {
+		 		...item,
+		 		completed: !item.completed
+			} 
+		}
+	);
+};
+
+const removeItem = (state, action) => {
+	return mapTodo( state, action, (todo) => {
+			return {
+				...todo,
+				items: todo.items.filter( (item) => (item.id !== action.itemId) )
+			}
+		}
+	)
+};
+
+const addContact = (state, action) => {
+	return mapItems(state, action, (item) => {
+			return {
+				...item,
+				contact: action.contact
+			}
+		}
+	)
+};
+
+const removeContact = (state, action) => {
+	return mapItems(state, action, (item) => {
+			return {
+				...item,
+				contact: null,
+			}
+		}
+	)
+};
+
+const addImage = (state, action) => {
+	return mapItems(state, action, (item) => {
+			return {
+				...item,
+				image: action.image
+			}
+		}
+	)
+};
+
+const removeImage = (state, action) => {
+	return mapItems(state, action, (item) => {
+			return {
+				...item,
+				image: null,
+			}
+		}
+	)
+};
+
+const todos = (state=INITIAL_STATE, action) => {
+	// console.log( 'State:' + JSON.stringify(state) );
+	// console.log( 'Action:' + JSON.stringify(action) );
+
+	if( arguments.length < 1 ) {
+		return state;
+	}
+
 	switch (action.type) {
 		case 'ADD_TODO':
-			return [
-				...state,
-				{
-					id: action.id,
-					title: action.title,
-					completed: false,
-					items: [],
-				}
-			];
+			return addTodo(state, action);
 		case 'TOGGLE_TODO':
-			return state.map(todo =>
-				(todo.id === action.id)
-					? {...todo, completed: !todo.completed}
-					: todo
-			);
+			return toggleTodo(state, action);
 		case 'REMOVE_TODO':
-			return state.filter(todo =>
-				todo.id !== action.id
-			)
+			return filterTodo(state, action, (todo) => todo.id !== action.id );
 		case 'ADD_TODO_ITEM':
-			return state;
+			return addItem(state, action);
 		case 'TOGGLE_TODO_ITEM':
-			return state;
+			return toggleItem(state, action);
 		case 'REMOVE_TODO_ITEM':
-			return state.filter(todo =>
-				todo.id !== action.id
-			)
-
-
+			return removeItem(state, action);
+		case 'ADD_CONTACT':
+			return addContact(state, action);
+		case 'REMOVE_CONTACT':
+			return removeContact(state, action);
+		case 'ADD_IMAGE':
+			return addImage(state, action);
+		case 'REMOVE_IMAGE':
+			return removeImage(state, action);
 		default:
 			return state;
 	}

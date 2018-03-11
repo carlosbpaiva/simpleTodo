@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 
 export default class App extends React.Component {
 
+/*
   componentWillMount(){
     firebase.initializeApp({
       apiKey: 'AIzaSyAnPqKQlv0HWLEZsMN794t7RbFSDsJsOJ8',
@@ -20,6 +21,7 @@ export default class App extends React.Component {
       storageBucket: 'gs://simple-todo-app-ttrn.appspot.com'
     });                                                                                                                                                                                                                                                                                                            
   }
+*/
 
   state = {
     isLoadingComplete: false,
