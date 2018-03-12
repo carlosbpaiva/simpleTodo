@@ -1,53 +1,33 @@
 //todos.js
 
-const INITIAL_STATE = { todos:[] };
-
-const addTodo = (state, action) => {
-	return {
+const addTodo = (state, action) => 
+	[
 		...state,
-		todos:[
-			...state.todos,
-			{
-				id: action.id,
-				title: action.title,
-				completed: false,
-				items: [],
-			}
-		]
-	}
-};
-const mapTodo = ( state, action, mapTransform ) => {
-	return {
-		...state, 
-		todos: [
-				...state.todos.map(
-					todo =>
-						(todo.id === action.id)
-						? mapTransform(todo)
-						: todo
-				)
-			]
-	}
-};
+		{
+			id: action.id,
+			title: action.title,
+			completed: false,
+			items: [],
+		}
+	]
+const mapTodo = ( state, action, mapTransform ) =>{
+	// console.log( action.type + ' ' + typeof state + ' State:' + JSON.stringify(state) );
+	// console.log( 'Action:' + JSON.stringify(action) );
+	return state.map( todo =>
+		(todo.id === action.id)
+			? mapTransform(todo)
+			: todo
+	)
+}
+const filterTodo = ( state, action, filterFunc ) =>
+	state.filter( todo => filterFunc(todo) );
 
-const filterTodo = ( state, action, filterFunc ) => {
-	return {
-		...state, 
-		todos: [
-				...state.todos.filter(
-					todo =>  filterFunc(todo)
-				)
-			]
-	}
-};
-
-const toggleTodo = (state,action) => {
+const toggleTodo = (state, action) => {
 	return mapTodo(state, action, 
-		(todo) => {
-	 		return {...todo, completed: !todo.completed} 
-	 	}
-	);
-};
+		(todo) => ( {...todo, completed: !todo.completed} )
+	)
+}
+
 
 const addItem = (state, action) => {
 	return mapTodo( state, action, (todo) => {
@@ -143,9 +123,7 @@ const removeImage = (state, action) => {
 	)
 };
 
-const todos = (state=INITIAL_STATE, action) => {
-	// console.log( 'State:' + JSON.stringify(state) );
-	// console.log( 'Action:' + JSON.stringify(action) );
+const todos = (state=[], action) => {
 
 	if( arguments.length < 1 ) {
 		return state;

@@ -1,102 +1,91 @@
 //reducerTests.js
-import todos from './todos';
-
-const emptyState = { todos: [] };
-
-let insertTodo = () => todos( emptyState, {
-						type: 'ADD_TODO',
-						title: 'New Todo',
-						id: 1,
-					} 
-				);
+import todoApp from './';
+import todos from './todos'
+import * as actions from '../actions';
 
 test( 'Add todo ', () => {
-		expect(insertTodo()).toEqual(
-			{ todos: [ 
+		expect( 
+			todos( {
+				todos: []},
+				actions.addTodo('New Todo'))
+			).toEqual( [ 
 							{
 								id: 1,
 								title: 'New Todo',
 								completed: false,
 								items: []
 							}
-						]}
+						]
 		) 
 	}
 );
 
 test( 'toggle ToDo', () => {
-	expect(
-		todos( {
-				todos: [
-					{ 
-						id: 1,
-						completed:false
-					}
-				]
-			}, {
-				type: 'TOGGLE_TODO',
-				id: 1,
-				}
-			)
-		).toEqual(
-	 		{
-				todos: [
-					{ 
-						id: 1,
-						completed:true
-					}
-				]
-			}
-		)
-	}
-);
-
-test( 'remove ToDo', () => {
-	expect(
-		todos( {
-				todos: [
-					{ 
-						id: 1,
-						completed:false
-					}
-				]
-			}, {
-				type: 'REMOVE_TODO',
-				id: 1,
-				}
-			)
-		).toEqual(
-	 		{
-				todos: []
-			}
-		)
-	}
-);
-
-test( 'Add Todo Item', () => {
 		expect(
-			todos(
-				{
-					todos: [
-						{
+			todos( [
+						{ 
 							id: 1,
-							items: [],
+							completed:false
 						}
-					]
-				},
-				{
-					type: 'ADD_TODO_ITEM',
-					id: 1,
-					itemId: 1,
-					itemTitle: 'Todo Item',
-					itemText: 'Todo Item Text',
-				}
+					],	actions.toggleTodo(1)
 			)
-		).toEqual (
-			{
-				todos: [
+		).toEqual(
+ 			[
+				{ 
+					id: 1,
+					completed:true
+				}
+			]
+		)
+	}
+);
+
+test( 'remove ToDo', () => 
+	expect(
+		todos( [
+					{ 
+						id: 1,
+						completed:false
+					}
+				], actions.removeTodo(1)
+			)
+		).toEqual( [] )
+);
+
+test( 'Add Todo Item', () =>
+	expect(
+		todos([
 					{
+						id: 1,
+						items: [],
+					}
+				], actions.addTodoItem(1, 'Todo Item', 'Todo Item Text')
+		)
+	).toEqual ( 
+		[
+			{
+				id:1,
+				items: [
+					{
+						todoId: 1,
 						id:1,
+						title: 'Todo Item',
+						text: 'Todo Item Text',
+						completed: false,
+						contact: null,
+						image: null,
+					}
+				]
+			}
+		]
+	)
+);
+
+test( 'Toggle Todo Item', () => {
+		expect(
+			todos([
+					{
+						id: 1,
 						items: [
 							{
 								todoId: 1,
@@ -104,61 +93,28 @@ test( 'Add Todo Item', () => {
 								title: 'Todo Item',
 								text: 'Todo Item Text',
 								completed: false,
-								contact: null,
-								image: null,
-							}
-						]
-					}
-				]
-			}
-		)
-	}
-);
-
-test( 'Toggle Todo Item', () => {
-		expect(
-			todos(
-				{
-					todos: [
-						{
-							id: 1,
-							items: [
-								{
-									todoId: 1,
-									id:1,
-									title: 'Todo Item',
-									text: 'Todo Item Text',
-									completed: false,
-									attachments: [],
-								}
-							]
-						}
-					]
-				},
-				{
-					type: 'TOGGLE_TODO_ITEM',
-					id: 1,
-					itemId: 1,
-				}
-			)
-		).toEqual (
-			{
-				todos: [
-					{
-						id:1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								title: 'Todo Item',
-								text: 'Todo Item Text',
-								completed: true,
 								attachments: [],
 							}
 						]
 					}
-				]
-			}
+				], actions.toggleTodoItem(1,1)
+			)
+		).toEqual (
+			[
+				{
+					id:1,
+					items: [
+						{
+							todoId: 1,
+							id:1,
+							title: 'Todo Item',
+							text: 'Todo Item Text',
+							completed: true,
+							attachments: [],
+						}
+					]
+				}
+			]
 		)
 	}
 );
@@ -166,35 +122,26 @@ test( 'Toggle Todo Item', () => {
 test( 'Remove Todo Item', () => {
 		expect(
 			todos(
-				{
-					todos: [
-						{
-							id: 1,
-							items: [
-								{
-									todoId: 1,
-									id:1,
-								}
-							]
-						}
-					]
-				},
-				{
-					type: 'REMOVE_TODO_ITEM',
-					id: 1,
-					itemId: 1,
-				}
-			)
-		).toEqual (
-			{
-				todos: [
+				[
 					{
-						id:1,
+						id: 1,
 						items: [
+							{
+								todoId: 1,
+								id:1,
+							}
 						]
 					}
-				]
-			}
+				], actions.removeTodoItem(1,1)
+			)
+		).toEqual (
+			[
+				{
+					id:1,
+					items: [
+					]
+				}
+			]
 		)
 	}
 );
@@ -202,41 +149,31 @@ test( 'Remove Todo Item', () => {
 test( 'Add Contact', () => {
 		expect(
 			todos(
-				{
-					todos: [
+				[
+					{
+						id: 1,
+						items: [
 						{
-							id: 1,
-							items: [
-							{
-								todoId: 1,
-								id:1,
-							}
-							],
+							todoId: 1,
+							id:1,
 						}
-					]
-				},
-				{
-					type: 'ADD_CONTACT',
-					id: 1,
-					itemId: 1,
-					contact: {name:'joe'},
-				}
+						],
+					}
+				], actions.addContact( 1, 1, {name:'joe'} )
 			)
 		).toEqual (
-			{
-				todos: [
-					{
-						id:1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								contact: {name: 'joe'}
-							}
-						]
-					}
-				]
-			}
+			[
+				{
+					id:1,
+					items: [
+						{
+							todoId: 1,
+							id:1,
+							contact: {name: 'joe'}
+						}
+					]
+				}
+			]
 		)
 	}
 );
@@ -244,41 +181,31 @@ test( 'Add Contact', () => {
 test( 'Remove Contact', () => {
 		expect(
 			todos(
-				{
-					todos: [
+				[
+					{
+						id: 1,
+						items: [
 						{
-							id: 1,
-							items: [
-							{
-								todoId: 1,
-								id:1,
-							}
-							],
+							todoId: 1,
+							id:1,
 						}
-					]
-				},
-				{
-					type: 'REMOVE_CONTACT',
-					id: 1,
-					itemId: 1,
-					contact: {name:'joe'},
-				}
+						],
+					}
+				], actions.removeContact( 1, 1 )
 			)
 		).toEqual (
-			{
-				todos: [
-					{
-						id:1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								contact: null,
-							}
-						]
-					}
-				]
-			}
+			[
+				{
+					id:1,
+					items: [
+						{
+							todoId: 1,
+							id:1,
+							contact: null,
+						}
+					]
+				}
+			]
 		)
 	}
 );
@@ -286,41 +213,31 @@ test( 'Remove Contact', () => {
 test( 'Add Image', () => {
 		expect(
 			todos(
-				{
-					todos: [
+				[
+					{
+						id: 1,
+						items: [
 						{
-							id: 1,
-							items: [
-							{
-								todoId: 1,
-								id:1,
-							}
-							],
+							todoId: 1,
+							id:1,
 						}
-					]
-				},
-				{
-					type: 'ADD_IMAGE',
-					id: 1,
-					itemId: 1,
-					image: {filename:'image.png'},
-				}
+						],
+					}
+				], actions.addImage( 1, 1, {filename:'image.png'} )
 			)
 		).toEqual (
-			{
-				todos: [
-					{
-						id:1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								image: {filename:'image.png'},
-							}
-						]
-					}
-				]
-			}
+			[
+				{
+					id:1,
+					items: [
+						{
+							todoId: 1,
+							id:1,
+							image: {filename:'image.png'},
+						}
+					]
+				}
+			]
 		)
 	}
 );
@@ -328,41 +245,32 @@ test( 'Add Image', () => {
 test( 'Remove Image', () => {
 		expect(
 			todos(
-				{
-					todos: [
+				[
+					{
+						id: 1,
+						items: [
 						{
-							id: 1,
-							items: [
-							{
-								todoId: 1,
-								id:1,
-							}
-							],
+							todoId: 1,
+							id:1,
 						}
-					]
-				},
-				{
-					type: 'REMOVE_IMAGE',
-					id: 1,
-					itemId: 1,
-					image: {filename:'image.png'},
-				}
+						],
+					}
+				], actions.removeImage( 1, 1 )
+
 			)
 		).toEqual (
-			{
-				todos: [
-					{
-						id:1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								image: null,
-							}
-						]
-					}
-				]
-			}
+			[
+				{
+					id:1,
+					items: [
+						{
+							todoId: 1,
+							id:1,
+							image: null,
+						}
+					]
+				}
+			]
 		)
 	}
 );

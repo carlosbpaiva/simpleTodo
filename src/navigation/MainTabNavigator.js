@@ -6,7 +6,7 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import Colors from '../constants/Colors';
 
 import LoginForm from '../screens/LoginForm';
-import LinksScreen from '../screens/LinksScreen';
+import TodoListScreen from '../screens/TodoListScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
@@ -14,8 +14,8 @@ export default TabNavigator(
     Home: {
       screen: LoginForm,
     },
-    Links: {
-      screen: LinksScreen,
+    Todos: {
+      screen: TodoListScreen,
     },
     Settings: {
       screen: SettingsScreen,
@@ -30,11 +30,11 @@ export default TabNavigator(
           case 'Home':
             iconName =
               Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
+                ? `ios-home${focused ? '' : '-outline'}`
+                : 'md-home-circle';
             break;
-          case 'Links':
-            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
+          case 'Todos':
+            iconName = Platform.OS === 'ios' ? `ios-list${focused ? '' : '-outline'}` : 'md-list';
             break;
           case 'Settings':
             iconName =

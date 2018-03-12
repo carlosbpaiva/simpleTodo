@@ -34,7 +34,6 @@ class LoginForm extends Component {
 	}
 
     render() {
-    	debugger;
         return (
             <SafeAreaView style={styles.container}>
             	<Text style={styles.text}>

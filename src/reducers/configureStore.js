@@ -1,3 +1,4 @@
+/*
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -34,3 +35,10 @@ export default (rootReducer, rootSaga) => {
 
 	return { store, persistor };
 }
+*/
+const persistConfig = {
+	key: 'root',
+	storage
+};
+
+const store = createStore(reducer);

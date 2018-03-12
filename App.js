@@ -3,15 +3,45 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './src/navigation/RootNavigation';
-
 import LoginForm from './src/screens/LoginForm'; 
+//import './Reactotron.config';
+
+import Reactotron from 'reactotron-react-native'
+
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './src/reducers';
+
+
+Reactotron
+  .configure() // controls connection & communication settings
+  .useReactNative() // add all built-in react native plugins
+  .connect() // let's connect!
 
 import * as firebase from 'firebase';
 
 
 export default class App extends React.Component {
 
-/*
+  state = {
+    isLoadingComplete: false,
+    hasLogin: true,
+  };
+
+  store = createStore(reducer);
+
+  render() {
+      return (
+            <Provider store={this.store}>
+              <View style={styles.container}>
+                {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+                {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+                <RootNavigation />
+              </View >
+            </Provider> 
+        )
+    }
+
   componentWillMount(){
     firebase.initializeApp({
       apiKey: 'AIzaSyAnPqKQlv0HWLEZsMN794t7RbFSDsJsOJ8',
@@ -20,37 +50,6 @@ export default class App extends React.Component {
       projectId: 'simple-todo-app-ttrn',
       storageBucket: 'gs://simple-todo-app-ttrn.appspot.com'
     });                                                                                                                                                                                                                                                                                                            
-  }
-*/
-
-  state = {
-    isLoadingComplete: false,
-    hasLogin: true,
-  };
-
-  render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      if(!this.state.hasLogin) {
-        return (
-          <LoginForm />
-        )
-      }
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-          <RootNavigation />
-        </View>
-      );
-    }
   }
 
   _loadResourcesAsync = async () => {
