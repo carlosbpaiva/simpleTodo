@@ -12,9 +12,11 @@ let TodoTitle =  ({userInputs, todoTitleChange}) =>
       style={styles.todoTitle}
      />
   )
-//
-TodoTitle = connect(
-  state => ( { userInputs: state.userInputs } ),
+
+TodoTitle = connect(  
+  state => { 
+      return { userInputs: state.userInputs };
+    },
   dispatch => ( 
                 { 
                   todoTitleChange: (element) => dispatch( todoTitleChange(element) ) 

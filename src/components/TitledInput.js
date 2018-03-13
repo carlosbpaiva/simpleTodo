@@ -2,51 +2,18 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 
+import { StyleSheet } from 'react-native';
+import styles from './componentStyles.js';
 
-const TitledInput = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
-
-    const { inputStyle, labelStyle, containerStyle } = styles;
-
+export default TitledInput = (props) => {
     return (
-        <View style={containerStyle}>
-            <Text style={labelStyle}>{label.toUpperCase()}</Text>
-            <TextInput
-                autoCorrect={false}
-                placeholder={placeholder}
-                secureTextEntry={secureTextEntry}
-                value={value}
-                onChangeText={onChangeText}
-                style={inputStyle}
+        <View style={styles.containerStyle}>
+            <Text style={styles.labelStyle}>{props.label.toUpperCase()}</Text>
+            <TextInput { ...{ ...props,
+                                style: styles.inputStyle 
+                            }
+                        }
             />
         </View>
     );
 };
-
-const styles = {
-    inputStyle: {
-        paddingRight: 5,
-        paddingLeft: 5,
-        paddingBottom: 2,
-        color: '#262626',
-        fontSize: 18,
-        fontWeight: '200',
-        flex: 1,
-        height: 40
-    },
-    labelStyle: {
-        fontSize: 12,
-        color: '#7F7D7D',
-        fontWeight: '200',
-        flex: 1
-    },
-    containerStyle: {
-        height: 45,
-        flexDirection: 'column',
-         alignItems: 'flex-start',
-         width: '100%',
-         borderColor: '#D4D4D4',
-        borderBottomWidth: 1,
-    }
-};
-
-export { TitledInput };
