@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "ToDo App",
-    "description": "Toptal React Native Academy project.",
-    "slug": "todo",
+    "name": "simple-todo",
+    "description": "Simple ToDo App for React Native Academy.",
+    "slug": "simple-todo",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

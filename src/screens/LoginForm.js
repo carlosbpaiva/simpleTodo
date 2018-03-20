@@ -1,46 +1,34 @@
 //LoginForm.js
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Button, SafeAreaView, StyleSheet, Text, ActivityIndicator } from 'react-native';
+import { login, logout } from '../redux/reducers/user.actions';
 import '../components/TitledInput';
-import * as firebase from 'firebase';
+
 
 class LoginForm extends Component {
-    state = { email: '', password: '', error: '', loading: false };
+    state = { email: '', password: '' };
 
-
-    onLoginPress() {
-        this.setState({ error: '', loading: true });
-        const { email, password } = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { this.setState({ error: 'Login OK', loading: false }); })
-            .catch((err) => {
-                    this.setState( { error: 'Authentication failed: '+err, loading: false } );
-                    return;
-            });
+    onLoginPress = () => {
+        this.props.login( this.state.email, this.state.password )
     };
 
-    onSignUpPress() {
-        this.setState({ error: '', loading: true });
+    onSignUpPress = () => {
         const { email, password } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => { this.setState({ error: 'User Created!', loading: false }); })
-            .catch((err) => {
-                this.setState({ error: 'Unable to create user: '+err, loading: false });
-            });
     };
  
 	renderButtonOrSpinner() {
-        if (this.state.loading) {
+        if (this.props.loading) {
             <ActivityIndicator size={'small'}/>    
         }
         return(
             <View style={ styles.buttonBar }>
-                <Button onPress={this.onLoginPress.bind(this)} title={'Log in'} />
-                <Button onPress={this.onSignUpPress.bind(this)} title={'Sign Up'} />
+                <Button onPress={this.onLoginPress} title={'Log in'} />
+                <Button onPress={this.onSignUpPress} title={'Sign Up'} />
             </View>
             )
 	}
-
+//
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -67,12 +55,23 @@ class LoginForm extends Component {
                     onChangeText = {password => this.setState({ password })}
                     autoCapitalize = 'none'
                 />
-                <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+                <Text style={styles.errorTextStyle}>{this.props.error}</Text>
                 {this.renderButtonOrSpinner()}
             </SafeAreaView>
         );
     }
 }
+
+const mapStateToProps = state => {
+    const newState = { username, password, loading, error } = state;
+    return newState;
+};
+
+const LoginContainer = connect(mapStateToProps, { login, logout })(LoginForm)
+
+export default LoginContainer
+
+//export default LoginForm;
 
 const styles = StyleSheet.create({
 	container: {
@@ -104,5 +103,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
 });
-
-export default LoginForm;

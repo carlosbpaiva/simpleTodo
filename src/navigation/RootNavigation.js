@@ -5,7 +5,7 @@ import MainTabNavigator from './MainTabNavigator';
 
 const RootStackNavigator = StackNavigator(
   {
-    Main: {
+     Main: {
       screen: MainTabNavigator,
     },
   },

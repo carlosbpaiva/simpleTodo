@@ -11,10 +11,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 export default TabNavigator(
   {
-    Home: {
-      screen: LoginForm,
-    },
-    Todos: {
+   Todos: {
       screen: TodoListScreen,
     },
     Settings: {
