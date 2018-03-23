@@ -1,22 +1,27 @@
-import { call, fork, put, take, takeEvery } from 'redux-saga/effects'
+import { call, fork, put, take, takeEvery, select } from 'redux-saga/effects'
 
 import {
-  types,
   loginSuccess,
   loginFailure,
   logoutSuccess,
   logoutFailure,
-  syncUser
 } from '../reducers/user.actions'
 
 import rsf from '../rsf'
 
 function * loginSaga (action) {
   try {
+    const user = yield select( state => state.user);
+    if( ! action.email ) {
+      throw new Error('Please input your email address ');
+    }
+    if( ! action.password ) {
+      throw new Error('Please input your password');
+    }
     yield call(rsf.auth.signInWithEmailAndPassword, action.email, action.password );
     yield put(loginSuccess());
   } catch (error) {
-    yield put(loginFailure('Some error occured:' + error));
+    yield put(loginFailure(error.message));
   }
 }
 
@@ -31,7 +36,7 @@ function * logoutSaga () {
 
 export default function * loginRootSaga () {
   yield [
-    takeEvery(types.LOGIN.REQUEST, loginSaga),
-    takeEvery(types.LOGOUT.REQUEST, logoutSaga)
+    takeEvery('LOGIN.REQUEST', loginSaga),
+    takeEvery('LOGOUT.REQUEST', logoutSaga)
   ];
 }

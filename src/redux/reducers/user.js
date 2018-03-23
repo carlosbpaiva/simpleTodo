@@ -18,7 +18,9 @@ export default function userReducer (state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        loggedIn: true
+        loggedIn: true,
+        user: action.email,
+        error: 'OK',
       }
     case types.LOGIN.FAILURE:
       return {

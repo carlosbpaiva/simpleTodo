@@ -41,7 +41,3 @@ export const logoutFailure = error => ({
   error
 })
 
-export const syncUser = user => ({
-  type: types.SYNC_USER,
-  user
-})

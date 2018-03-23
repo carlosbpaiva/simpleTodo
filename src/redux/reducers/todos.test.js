@@ -1,179 +1,182 @@
 //reducerTests.js
 import todoApp from './';
 import todos from './todos'
-import * as actions from '../actions';
+import * as actions from './todos.actions';
 
 test( 'Add todo ', () => {
 		expect( 
-			todos( {
-				todos: []},
-				actions.addTodo('New Todo'))
-			).toEqual( [ 
-							{
-								id: 1,
-								title: 'New Todo',
-								completed: false,
-								items: []
-							}
-						]
-		) 
+			todos( 
+				{
+					lastId: 1,
+					filterText: '',
+					items: []
+				},
+				actions.addTodo(
+					'New Todo',
+					'Some Text',
+					true,
+					{ 'name':'john'},
+					'file://image.jpg'
+					)
+				)
+		).toEqual( 
+			{
+				lastId: 2,
+				filterText: '',
+				items: [ 
+					{
+						id: 2,
+						title: 'New Todo',
+						text: 'Some Text',
+						completed: true,
+						contact: { 'name':'john'},
+						image: 'file://image.jpg',
+					}
+				]
+			}
+		)	 
+	}
+);
+
+test( 'update ToDo', () => {
+		expect(
+			todos(
+	 			{
+					lastId: 1,
+					filterText: '',
+					items: [ 
+						{
+							id: 1,
+							title: 'New Todo',
+							text: '',
+							completed: false,
+							contact: null,
+							image: null,
+						}
+					]
+				},
+			actions.updateTodo(1,'New Title','New Text', false, { 'name':'john'}, null)
+			)
+		).toEqual(
+ 			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: false,
+						contact: { 'name':'john'},
+						image: null,
+					}
+				]
+			}
+		)
 	}
 );
 
 test( 'toggle ToDo', () => {
 		expect(
-			todos( [
-						{ 
+			todos( 
+				{
+					lastId: 1,
+					filterText: '',
+					items: [ 
+						{
 							id: 1,
-							completed:false
-						}
-					],	actions.toggleTodo(1)
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: null,
+							image: null,
+						},
+					]
+				},
+				actions.toggleTodo(1)
 			)
 		).toEqual(
- 			[
-				{ 
-					id: 1,
-					completed:true
-				}
-			]
+			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: true,
+						contact: null,
+						image: null,
+					}
+				]
+			}
 		)
 	}
 );
 
 test( 'remove ToDo', () => 
 	expect(
-		todos( [
-					{ 
-						id: 1,
-						completed:false
-					}
-				], actions.removeTodo(1)
-			)
-		).toEqual( [] )
-);
-
-test( 'Add Todo Item', () =>
-	expect(
-		todos([
-					{
-						id: 1,
-						items: [],
-					}
-				], actions.addTodoItem(1, 'Todo Item', 'Todo Item Text')
-		)
-	).toEqual ( 
-		[
+		todos( 
 			{
-				id:1,
-				items: [
+				lastId: 1,
+				filterText: '',
+				items: [ 
 					{
-						todoId: 1,
-						id:1,
-						title: 'Todo Item',
-						text: 'Todo Item Text',
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
 						completed: false,
 						contact: null,
 						image: null,
 					}
 				]
-			}
-		]
-	)
+			},
+			actions.removeTodo(1)
+		)
+	).toEqual(
+		{
+			lastId: 1,
+			filterText: '',
+			items: [],
+		}
+	 )
 );
 
-test( 'Toggle Todo Item', () => {
-		expect(
-			todos([
-					{
-						id: 1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-								title: 'Todo Item',
-								text: 'Todo Item Text',
-								completed: false,
-								attachments: [],
-							}
-						]
-					}
-				], actions.toggleTodoItem(1,1)
-			)
-		).toEqual (
-			[
-				{
-					id:1,
-					items: [
-						{
-							todoId: 1,
-							id:1,
-							title: 'Todo Item',
-							text: 'Todo Item Text',
-							completed: true,
-							attachments: [],
-						}
-					]
-				}
-			]
-		)
-	}
-);
-
-test( 'Remove Todo Item', () => {
-		expect(
-			todos(
-				[
-					{
-						id: 1,
-						items: [
-							{
-								todoId: 1,
-								id:1,
-							}
-						]
-					}
-				], actions.removeTodoItem(1,1)
-			)
-		).toEqual (
-			[
-				{
-					id:1,
-					items: [
-					]
-				}
-			]
-		)
-	}
-);
 
 test( 'Add Contact', () => {
 		expect(
 			todos(
-				[
-					{
-						id: 1,
-						items: [
-						{
-							todoId: 1,
-							id:1,
-						}
-						],
-					}
-				], actions.addContact( 1, 1, {name:'joe'} )
-			)
-		).toEqual (
-			[
 				{
-					id:1,
-					items: [
+					lastId: 1,
+					filterText: '',
+					items: [ 
 						{
-							todoId: 1,
-							id:1,
-							contact: {name: 'joe'}
+							id: 1,
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: null,
+							image: null,
 						}
 					]
-				}
-			]
+				},
+				actions.addContact( 1, {name:'joe'} )
+			)
+		).toEqual (
+			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: false,
+						contact: {name: 'joe'},
+						image: null,
+					}
+				]
+			},
 		)
 	}
 );
@@ -181,31 +184,37 @@ test( 'Add Contact', () => {
 test( 'Remove Contact', () => {
 		expect(
 			todos(
-				[
-					{
-						id: 1,
-						items: [
-						{
-							todoId: 1,
-							id:1,
-						}
-						],
-					}
-				], actions.removeContact( 1, 1 )
-			)
-		).toEqual (
-			[
 				{
-					id:1,
-					items: [
+					lastId: 1,
+					filterText: '',
+					items: [ 
 						{
-							todoId: 1,
-							id:1,
-							contact: null,
+							id: 1,
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: {name: 'joe'},
+							image: null,
 						}
 					]
+				},
+				actions.removeContact( 1 )
+			)
+		).toEqual (
+			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+				{
+					id: 1,
+					title: 'New Title',
+					text: 'New Text',
+					completed: false,
+					contact: null,
+					image: null,
 				}
-			]
+				]
+		},
 		)
 	}
 );
@@ -213,31 +222,37 @@ test( 'Remove Contact', () => {
 test( 'Add Image', () => {
 		expect(
 			todos(
-				[
-					{
-						id: 1,
-						items: [
-						{
-							todoId: 1,
-							id:1,
-						}
-						],
-					}
-				], actions.addImage( 1, 1, {filename:'image.png'} )
-			)
-		).toEqual (
-			[
 				{
-					id:1,
-					items: [
+					lastId: 1,
+					filterText: '',
+					items: [ 
 						{
-							todoId: 1,
-							id:1,
-							image: {filename:'image.png'},
+							id: 1,
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: {name: 'joe'},
+							image: null,
 						}
 					]
-				}
-			]
+				},
+				actions.addImage( 1, {filename:'image.png'} )
+			)
+		).toEqual (
+			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: false,
+						contact: {name: 'joe'},
+						image: {filename:'image.png'},
+					}
+				]
+			}
 		)
 	}
 );
@@ -245,32 +260,75 @@ test( 'Add Image', () => {
 test( 'Remove Image', () => {
 		expect(
 			todos(
-				[
-					{
-						id: 1,
-						items: [
-						{
-							todoId: 1,
-							id:1,
-						}
-						],
-					}
-				], actions.removeImage( 1, 1 )
-
-			)
-		).toEqual (
-			[
 				{
-					id:1,
-					items: [
+					lastId: 1,
+					filterText: '',
+					items: [ 
 						{
-							todoId: 1,
-							id:1,
-							image: null,
+							id: 1,
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: {name: 'joe'},
+							image: {filename:'image.png'},
 						}
 					]
-				}
-			]
+				},
+				actions.removeImage( 1 )
+			)
+		).toEqual (
+			{
+				lastId: 1,
+				filterText: '',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: false,
+						contact: {name: 'joe'},
+						image: null,
+					}
+				]
+			}
+		)
+	}
+);
+
+test( 'Set Filter Text', () => {
+		expect(
+			todos(
+				{
+					lastId: 1,
+					filterText: '',
+					items: [ 
+						{
+							id: 1,
+							title: 'New Title',
+							text: 'New Text',
+							completed: false,
+							contact: {name: 'joe'},
+							image: {filename:'image.png'},
+						}
+					]
+				},
+				actions.setFilterText( 'filter text' )
+			)
+		).toEqual (
+			{
+				lastId: 1,
+				filterText: 'filter text',
+				items: [ 
+					{
+						id: 1,
+						title: 'New Title',
+						text: 'New Text',
+						completed: false,
+						contact: {name: 'joe'},
+						image: {filename:'image.png'},
+					}
+				]
+			}
 		)
 	}
 );

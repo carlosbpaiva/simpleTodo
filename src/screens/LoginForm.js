@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Button, SafeAreaView, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { login, logout } from '../redux/reducers/user.actions';
+
+import styles from './LoginFormStyles';
 import '../components/TitledInput';
 
 
@@ -32,9 +34,9 @@ class LoginForm extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-            	<Text style={styles.text}>
+                <Text style={styles.text}>
                     Simple ToDo App
-        		</Text>
+                </Text>
                 <Text style={styles.smallText}>
                     Please Log In or Sign Up to continue
                 </Text>                
@@ -63,43 +65,10 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => {
-    const newState = { username, password, loading, error } = state;
-    return newState;
+    const props = { user, loggedIn, loading, error } = state.user;
+    return props;
 };
 
 const LoginContainer = connect(mapStateToProps, { login, logout })(LoginForm)
 
 export default LoginContainer
-
-//export default LoginForm;
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		width: '90%',
-		marginTop: 50,
-		margin: 20,
-	},
-	text: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-    smallText: {
-        fontSize: 12,
-        textAlign: 'center',
-        margin: 0,
-        marginBottom: 0,
-    },
-    errorTextStyle: {
-        color: '#E64A19',
-        alignSelf: 'center',
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    buttonBar: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'space-around',
-    },
-});

@@ -5,7 +5,7 @@ import Reactotron from 'reactotron-react-native';
 import sagaPlugin from 'reactotron-redux-saga'
 import { reactotronRedux as reduxPlugin } from 'reactotron-redux'
 
-import reducers from './reducers/user'
+import reducers from './reducers'
 import rootSaga from './sagas'
 
 const middlewares = [];

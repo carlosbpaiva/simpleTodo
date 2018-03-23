@@ -1,62 +1,50 @@
 import React from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import { connect } from 'react-redux';
-import { todoTitleChange, addTodo, toggleTodo } from '../actions';
+import { setFilterText, addTodo, toggleTodo } from '../redux/reducers/todos.actions';
+import styles from './ScreenStyles';
 
-let TodoTitle =  ({userInputs, todoTitleChange}) =>
-  ( 
-    <TextInput
-      placeholder="Enter Title"
-      onChangeText={todoTitleChange}
-      value={userInputs.todoTitle}
-      style={styles.todoTitle}
-     />
-  )
+class TopMenu extends React.Component {
+  mockTodo = () => this.props.addTodo ('New Todo'+Math.random(1), 'Some Text', true, { 'name':'john'}, 'file://image.jpg');
+  // ()=> this.props.navigation.navigate('Todo')
+  render () { 
+    return(
+      <View style={styles.topMenu} >
+        <TextInput
+          placeholder="Enter Filter Text"
+          onChangeText={ text => this.props.setFilterText(text) }
+          value={this.props.filterText}
+          style={styles.FilterText}
+        />
+        <Button onPress={this.mockTodo} title="New Todo" />
+      </View>
+    )
+  }
+}
 
-TodoTitle = connect(  
-  state => { 
-      return { userInputs: state.userInputs };
-    },
-  dispatch => ( 
-                { 
-                  todoTitleChange: (element) => dispatch( todoTitleChange(element) ) 
-                }
-              )
-)(TodoTitle);
-//Declare Buttons
-let OkButton = ({state, addTodo}) =>
-  (
-    <View style = {styles.buttonBar}>
-      <Button onPress={()=>addTodo(state.userInputs.todoTitle)} title="OK" />
-      <Button onPress={()=>addTodo(state.userInputs.todoTitle)} title="Cancel" />
-    </View>
-  )
+TopMenu = connect( state => state.todos, { setFilterText, addTodo } )(TopMenu);
 
-// Buttons
-OkButton = connect(
-  state => ( { state: state } ),
-  dispatch => ( 
-                { 
-                  addTodo: (element) => dispatch( addTodo(element) )
-                } 
-              )
-) (OkButton);
-//
 class TodoList extends React.Component {
-  toggleTodo = (item) => () =>
+  toggle = (item) => () =>
   {
     this.props.toggleTodo(item.id);
-    console.log(item);
   }
   render() {
+    toggle = (item) => this.props.toggle(item);
+    regExp = new RegExp(this.props.filterText, 'i');
     return (
       <View style = {styles.todoList} >
         <FlatList 
-          data = {this.props.state.todos.map(item => ({...item, key:item.id}) ) }
+          data = {this.props.items.filter(
+              item => item.title.search(regExp) > -1
+            ).map(
+              item => ({...item, key:item.id}) 
+            ) 
+          }
           renderItem = {
-            ({item}) =>
+            ({item}) => 
               <View style = {styles.todoListItem} key={item.id}>
-                <TouchableOpacity onPress={this.toggleTodo(item)}>
+                <TouchableOpacity onPress={this.toggle(item)}>
                   <Text style = {item.completed ? styles.todoDone: styles.todo}>
                     {item.title}
                   </Text>
@@ -69,28 +57,27 @@ class TodoList extends React.Component {
   }
 }
 
-TodoList = connect(
-  state => ( { state: state } ),
-  dispatch => ( 
-                { 
-                  toggleTodo: (element) => dispatch( toggleTodo(element) )
-                } 
-              )
-) (TodoList);
+const TodoListContainer = connect( state => state.todos, {toggleTodo} )(TodoList);
 
-//
-export default TodoListScreen = ({state, addTodo}) => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <TodoTitle />
-      <OkButton />
-      <TodoList />
-    </SafeAreaView>
-  );
+
+export default class TodoListScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Todoooooooo Items',  
+  };
+
+  render() {
+    return (
+       <SafeAreaView style={{ flex: 1, width: '100%', backgroundColor: 'white' }}>
+       <TopMenu />
+        <TodoListContainer />
+      </SafeAreaView>
+
+    );
+  }
 }
 
-//
-const styles = StyleSheet.create({
+
+const deprecated_styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
@@ -104,16 +91,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 20
   },
-  buttonBar: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-around',
-  },
-  todoList: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'white'
-  },
+
+  
   todoListItem: {
     flexDirection: 'row',
     alignItems: 'center',
