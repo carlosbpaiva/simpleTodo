@@ -14,12 +14,21 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		margin: 10,
     },
+
+    smallText: {
+        fontSize: 12,
+        textAlign: 'center',
+        margin: 0,
+        marginBottom: 20,
+    },
+
     errorTextStyle: {
         color: '#E64A19',
         alignSelf: 'center',
         paddingTop: 10,
         paddingBottom: 10
     },
+    
     buttonBar: {
         flexDirection: 'row',
         flex: 1,

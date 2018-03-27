@@ -1,6 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    todoListContainer:{
+        flex:1,
+        flexDirection : 'column',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-start',
+        width: '90%',
+    },
+    topMenuContainer: {
+        flex:1,
+        height:30,
+    },
+
+    topMenu: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        marginLeft: 15,
+    },
+
 	container: {
 		flex: 1,
         justifyContent: 'flex-start',
@@ -8,19 +28,12 @@ const styles = StyleSheet.create({
 		marginTop: 50,
 		margin: 20,
 	},
-	topMenu: {
-        flex:1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '90%',
-        marginLeft: 15,
-    },
 
     FilterText: {
         fontSize: 18,
         textAlign: 'left',
         marginTop: 5,
+        height:30
     },
     todoList: {
         flex: 10,
@@ -46,13 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: "wrap",
     },
-    smallText: {
-        fontSize: 12,
-        textAlign: 'center',
-        margin: 0,
-        marginBottom: 20,
-    },
-    errorTextStyle: {
+     errorTextStyle: {
         color: '#E64A19',
         alignSelf: 'center',
         paddingTop: 10,

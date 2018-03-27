@@ -1,48 +1,55 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
 
 import LoginForm from './LoginForm';
 import TodoScreen from './TodoScreen';
 import TodoListScreen from './TodoListScreen';
 
-import MainNavigator from '../navigation/MainTabNavigator';
+// import MainNavigator from '../navigation/MainTabNavigator';
+
+const MainNavigator = StackNavigator(
+	{
+		TodoList: {
+			screen: TodoListScreen,
+			navigationOptions: () => ({
+				title: 'ToDo List' 
+			})
+		},
+		Todo: {
+			screen: TodoScreen,
+			navigationOptions: ({ navigation }) => {
+				let title = "New Todo Item"
+				if( navigation.state.params ) {
+					title = `${navigation.state.params.item.title}'s Info`;
+				}
+				return { title };
+			},
+		},
+	},
+	{
+		initialRouteName: 'TodoList',
+	}
+);
 
 class MainScreen extends Component {
 	render() {
 		if( this.props.loggedIn ) {
 			return(
-				<View style={styles.container}>
-				<TodoListScreen />
-				</View>
+				<MainNavigator />
 			)
 		} else {
 			return (
-				<View style={styles.container}>
 				<LoginForm />
-				</View>
 			)
 		}
 	}
 }
 
 const mapStateToProps = state => {
-	const props = { user, loggedIn } = state.user;
+	const props = { loggedIn } = state.user;
 	return props;
 };
 
 export default MainScreenContainer = connect(mapStateToProps)(MainScreen);
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-
-	},
-	statusBarUnderlay: {
-		height: 24,
-		backgroundColor: 'rgba(0,0,0,0.2)',
-	},
-});	

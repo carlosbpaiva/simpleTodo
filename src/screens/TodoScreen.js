@@ -12,52 +12,69 @@ class TodoScreen extends Component {
  
 	constructor(props) {
 		super(props);
-		const {id, title, text, completed, contact, image} = props;
+	 	let navProps;
+	 	if( props.navigation.state.params ) {
+			navProps = props.navigation.state.params.item;
+		} else {
+			navProps = { title:'', text:'', completed:false, contact:null, image:null};
+		}
+		const {id, title, text, completed, contact, image} = navProps;
 		this.state = {id, title, text, completed, contact, image};
 	}
 	
+	toggleTodo = () => {
+		this.setState({completed: ! this.state.completed});
+	}
+
+	removeTodo = () => {
+		this.props.removeTodo(this.state.id);
+	}
+	
 	updateTodo = () => {
-		if( this.props.selectedId ) {
-			this.props.updateTodo(title, text, completed, contact, image);
+		const {id, title, text, completed, contact, image} = this.state;
+		if( id ) {
+			this.props.updateTodo(id, title, text, completed, contact, image);
 		} else {
-			const { title, text, completed, contact, image } = this.state;
 			this.props.addTodo(title, text, completed, contact, image);
 		}
+		this.props.navigation.goBack();
 	}
 
 	render() {
-		completedIconName = Platform.OS === 'ios'
-			? `ios-home-${this.state.completed ? 'filled' : 'outline'}`
-			: 'android-checkbox-outline-blank';
+		completedIconName = `${this.state.completed ? 'checked' : ''}-square-o`;
 
 		return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<ScrollView>
 				<TextInput
 					placeholder="Enter Todo Title"
 					onChangeText = { title => this.setState({ title }) }
+					value = { this.state.title }
 					style={styles.textInput}
 				/>
 				<TextInput
 					multiline={true}
 					placeholder="Enter Text"
 					onChangeText = { text => this.setState({ text }) }
+					value = {this.state.text}
 					style={styles.textInput}
 				/>
 
-				<Ionicons
-					name={completedIconName}
-					size={22}
-					style={{ marginBottom: -3 }}
-					color={Colors.tabIconDefault}
-				/>
+				<Text 
+					style={styles.textInput} 
+					onPress={this.toggleTodo}>
+					{ this.state.completed ? 'Completed' : 'Not Completed'}
+				</Text>
 
 				<View style={ styles.buttonBar }>
 	                <Button onPress={this.updateTodo} title={'OK'} />
-	                <Button onPress={this.navigateBack} title={'Cancel'} />
+	                {
+	                	this.state.id && <Button onPress={this.removeTodo} title={'Delete'} />
+	                }
+
 	            </View>
             </ScrollView>
-		</SafeAreaView>
+		</View>
 	);}
 }
 
