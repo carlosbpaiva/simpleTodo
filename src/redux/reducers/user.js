@@ -3,7 +3,7 @@ import { types } from './user.actions'
 const initialState = {
   loading: false,
   loggedIn: false,
-  user: null
+  userId: null,
 }
 
 export default function userReducer (state = initialState, action = {}) {
@@ -12,15 +12,20 @@ export default function userReducer (state = initialState, action = {}) {
     case types.LOGOUT.REQUEST:
       return {
         ...state,
-        loading: true
+        loading: true,
+      }
+    case types.LOAD_USER_DATA:
+      return {
+        ...state,
+        userId: action.userId,
+        email: action.email,
+        error: '',
       }
     case types.LOGIN.SUCCESS:
       return {
         ...state,
         loading: false,
         loggedIn: true,
-        user: action.email,
-        error: 'OK',
       }
     case types.LOGIN.FAILURE:
       return {
@@ -38,12 +43,6 @@ export default function userReducer (state = initialState, action = {}) {
       return {
         ...state,
         loading: false
-      }
-    case types.SYNC_USER:
-      return {
-        ...state,
-        loggedIn: !!action.user,
-        user: action.user
       }
     default:
       return state

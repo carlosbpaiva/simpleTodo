@@ -1,25 +1,46 @@
 import { call, fork, put, take, takeEvery, select } from 'redux-saga/effects'
+import rsf from '../rsf'
 
 import {
   loginSuccess,
   loginFailure,
   logoutSuccess,
   logoutFailure,
-} from '../reducers/user.actions'
+  loadUserData,
+  types,
+} from '../reducers/user.actions';
 
-import rsf from '../rsf'
+import { loadTodos } from '../reducers/todos.actions';
+
+function * signupSaga (action) {
+  try {
+    const user = yield select( state => state.user);
+    const data = yield call(rsf.auth.createUserWithEmailAndPassword, action.email, action.password );
+    yield put(loginSuccess(data.uid));
+  } catch (error) {
+    yield put(loginFailure(error.message));
+  }
+}
 
 function * loginSaga (action) {
   try {
-    const user = yield select( state => state.user);
-    if( ! action.email ) {
-      throw new Error('Please input your email address ');
+    const userInfo = yield call(rsf.auth.signInWithEmailAndPassword, action.email, action.password );
+    yield put(loadUserData(userInfo.email, userInfo.uid));
+  } catch (error) {
+    yield put(loginFailure(error.message));
+  }
+}
+
+function* loadDataSaga(action) {
+  try {
+    const usersTodos = yield call(rsf.database.read, 'todos/' + action.userId);
+    const items = [];
+    for( id in usersTodos ) {
+        let{ title, text, completed, contact, image, } = usersTodos[id];
+        items.push({ id, title, text, completed, contact, image, });
     }
-    if( ! action.password ) {
-      throw new Error('Please input your password');
-    }
-    yield call(rsf.auth.signInWithEmailAndPassword, action.email, action.password );
     yield put(loginSuccess());
+    yield put(loadTodos(items));
   } catch (error) {
     yield put(loginFailure(error.message));
   }
@@ -36,7 +57,9 @@ function * logoutSaga () {
 
 export default function * loginRootSaga () {
   yield [
-    takeEvery('LOGIN.REQUEST', loginSaga),
-    takeEvery('LOGOUT.REQUEST', logoutSaga)
+    takeEvery(types.SIGNUP.REQUEST, signupSaga),
+    takeEvery(types.LOGIN.REQUEST, loginSaga),
+    takeEvery(types.LOGOUT.REQUEST, logoutSaga),
+    takeEvery(types.LOAD_USER_DATA, loadDataSaga),
   ];
 }

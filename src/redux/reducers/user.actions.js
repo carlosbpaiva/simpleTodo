@@ -2,14 +2,17 @@ export const types = {
   LOGIN: {
     REQUEST: 'LOGIN.REQUEST',
     SUCCESS: 'LOGIN.SUCCESS',
-    FAILURE: 'LOGIN.FAILURE'
+    FAILURE: 'LOGIN.FAILURE',
+  },
+  SIGNUP: {
+    REQUEST: 'SIGNUP.REQUEST',
   },
   LOGOUT: {
     REQUEST: 'LOGOUT.REQUEST',
     SUCCESS: 'LOGOUT.SUCCESS',
-    FAILURE: 'LOGOUT.FAILURE'
+    FAILURE: 'LOGOUT.FAILURE',
   },
-  SYNC_USER: 'SYNC_USER'
+  LOAD_USER_DATA: 'LOAD_USER_DATA',
 }
 
 export const login = (email, password) => ({
@@ -18,9 +21,20 @@ export const login = (email, password) => ({
   password
 })
 
-export const loginSuccess = email => ({
-  type: types.LOGIN.SUCCESS,
-  user: email
+export const signup = (email, password) => ({
+  type: types.SIGNUP.REQUEST,
+  email,
+  password
+})
+
+export const loadUserData = (email, userId) => ({
+  type: types.LOAD_USER_DATA,
+  email,
+  userId,
+})
+
+export const loginSuccess = () => ({
+    type: types.LOGIN.SUCCESS,
 })
 
 export const loginFailure = error => ({

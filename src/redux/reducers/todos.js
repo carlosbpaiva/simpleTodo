@@ -19,14 +19,12 @@ const removeTodo = (state, action) => (
 
 
 const addTodo = (state, action) => {
-	const newId = state.lastId + 1;
 	return {
 		...state,
-		lastId: newId,
 		items: [
 			...state.items,
 			{
-				id: newId,
+				id: action.id,
 				title: action.title,
 				text: action.text,
 				completed: action.completed,
@@ -59,7 +57,7 @@ const toggleTodo = (state, action) => {
 	return {
 		...state,
 		items: mapTodo(state.items, action, 
-			(todo) => ( {...todo, completed: !todo.completed} )
+			(todo) => ( {...todo, completed: action.completed} )
 		)
 	}
 }
@@ -100,7 +98,14 @@ const removeImage = (state, action) => {
  	}
 };
 
-const INITIAL_STATE = { lastId:0, filter:'', selectedId:null, items: [] };
+setFirebaseKey = ( state, action ) => ({
+	...state,
+	items: mapTodo(state.items, action, 
+			(todo) => ( {...todo, fbKey: action.fbKey} )
+	)
+});
+
+const INITIAL_STATE = { filterText:'', selectedId:null, items: [] };
 
 const todos = (state=INITIAL_STATE, action) => {
 	if( arguments.length < 1 ) {
@@ -108,8 +113,12 @@ const todos = (state=INITIAL_STATE, action) => {
 	}
 
 	switch (action.type) {
+		case 'LOAD_TODOS':
+			return { ...state, items: action.items };
 		case 'ADD_TODO':
 			return addTodo(state, action);
+		case 'INSERT_TODO':
+			return {...state};
 		case 'UPDATE_TODO':
 			return updateTodo(state, action);
 		case 'TOGGLE_TODO':

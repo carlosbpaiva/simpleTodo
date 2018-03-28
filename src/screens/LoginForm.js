@@ -2,21 +2,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Button, SafeAreaView, StyleSheet, Text, ActivityIndicator } from 'react-native';
-import { login, logout } from '../redux/reducers/user.actions';
+import { login, logout, signup, loginFailure } from '../redux/reducers/user.actions';
 
 import styles from './LoginFormStyles';
 import '../components/TitledInput';
 
 
 class LoginForm extends Component {
-    state = { email: '', password: '' };
+
+    constructor(props) {
+        super(props);
+        this.state = { email: props.email, password: props.password, error: props.error };        
+    }
+
+    validateUser = (email, password) => {
+        if( ! email ) {
+          this.props.loginFailure('Please input your email address ');
+          return false;
+        }
+        if( ! password  ) {
+          this.props.loginFailure('Please input your password');
+          return false;
+        }
+        return true;
+    }
 
     onLoginPress = () => {
-        this.props.login( this.state.email, this.state.password )
+        const { email, password } = this.state;
+        if( this.validateUser( email, password ) ) {
+            this.props.login( email, password );
+        }
     };
 
     onSignUpPress = () => {
         const { email, password } = this.state;
+        if( this.validateUser( email, password ) ) {
+            this.props.signup( email, password );
+        }
     };
  
 	renderButtonOrSpinner() {
@@ -69,6 +91,6 @@ const mapStateToProps = state => {
     return props;
 };
 
-const LoginContainer = connect(mapStateToProps, { login, logout })(LoginForm)
+const LoginContainer = connect(mapStateToProps, { signup, login, logout, loginFailure })(LoginForm)
 
 export default LoginContainer

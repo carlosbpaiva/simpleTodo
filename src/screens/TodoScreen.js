@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/colors';
 
-import { addTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducers/todos.actions';
+import { insertTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducers/todos.actions';
 import styles from './ScreenStyles';
 
 class TodoScreen extends Component {
@@ -16,7 +16,7 @@ class TodoScreen extends Component {
 	 	if( props.navigation.state.params ) {
 			navProps = props.navigation.state.params.item;
 		} else {
-			navProps = { title:'', text:'', completed:false, contact:null, image:null};
+			navProps = { title:'', text:'', completed:false, contact:'', image:''};
 		}
 		const {id, title, text, completed, contact, image} = navProps;
 		this.state = {id, title, text, completed, contact, image};
@@ -28,6 +28,7 @@ class TodoScreen extends Component {
 
 	removeTodo = () => {
 		this.props.removeTodo(this.state.id);
+		this.props.navigation.goBack();
 	}
 	
 	updateTodo = () => {
@@ -35,7 +36,7 @@ class TodoScreen extends Component {
 		if( id ) {
 			this.props.updateTodo(id, title, text, completed, contact, image);
 		} else {
-			this.props.addTodo(title, text, completed, contact, image);
+			this.props.insertTodo(title, text, completed, contact, image);
 		}
 		this.props.navigation.goBack();
 	}
@@ -82,6 +83,6 @@ const mapStateToProps = state => {
     return { selectedId } = state.todos;
 };
 
-const TodoContainer = connect(mapStateToProps, { addTodo, updateTodo, toggleTodo, removeTodo })(TodoScreen)
+const TodoContainer = connect(mapStateToProps, { insertTodo, updateTodo, toggleTodo, removeTodo })(TodoScreen)
 
 export default TodoContainer;

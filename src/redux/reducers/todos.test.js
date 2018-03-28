@@ -7,11 +7,11 @@ test( 'Add todo ', () => {
 		expect( 
 			todos( 
 				{
-					lastId: 1,
 					filterText: '',
 					items: []
 				},
 				actions.addTodo(
+					2,
 					'New Todo',
 					'Some Text',
 					true,
@@ -21,7 +21,6 @@ test( 'Add todo ', () => {
 				)
 		).toEqual( 
 			{
-				lastId: 2,
 				filterText: '',
 				items: [ 
 					{

@@ -30,7 +30,7 @@ const TopmenuContainer = connect( state => state.todos, { setFilterText, addTodo
 class TodoList extends React.Component {
   toggle = (item) => () =>
   {
-    this.props.toggleTodo(item.id);
+    this.props.toggleTodo(item.id, !item.completed);
   }
 
   navigateTo = (item) => () =>
@@ -40,11 +40,11 @@ class TodoList extends React.Component {
 
   render() {
     toggle = (item) => this.props.toggle(item);
-    regExp = new RegExp(this.props.filterText, 'i');
+    needle = this.props.filterText.toLowerCase();
     return (
         <FlatList 
           data = {this.props.items.filter(
-              item => item.title.search(regExp) > -1
+              item => item.title.toLowerCase().indexOf(needle) > -1
             ).map(
               item => ({...item, key:item.id}) 
             ) 
@@ -66,7 +66,7 @@ class TodoList extends React.Component {
   }
 }
 
-const TodoListContainer = connect( state => state.todos, {toggleTodo} )(TodoList);
+const TodoListContainer = connect( state => ({...state.todos, ...state.user}), {toggleTodo} )(TodoList);
 
 export default class TodoListScreen extends React.Component {
   render() {

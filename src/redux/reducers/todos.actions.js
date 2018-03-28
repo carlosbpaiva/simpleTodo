@@ -1,5 +1,30 @@
-export const addTodo = (title, text, completed, contact, image) => ({
-	type: 'ADD_TODO',
+export const types = {
+	LOAD_TODOS: 'LOAD_TODOS',
+	INSERT_TODO: 'INSERT_TODO',
+	ADD_TODO: 'ADD_TODO',
+	UPDATE_TODO: 'UPDATE_TODO',
+	TOGGLE_TODO: 'TOGGLE_TODO',
+	REMOVE_TODO: 'REMOVE_TODO',
+	SET_FILTER_TEXT: 'SET_FILTER_TEXT',
+}
+
+export const loadTodos = (items) => ({
+	type: types.LOAD_TODOS,
+	items,
+})
+
+export const insertTodo = (title, text, completed, contact, image) => ({
+	type: types.INSERT_TODO,
+	title,
+	text,
+	completed,
+	contact,
+	image,
+});
+
+export const addTodo = (id, title, text, completed, contact, image) => ({
+	type: types.ADD_TODO,
+	id,
 	title,
 	text,
 	completed,
@@ -8,7 +33,7 @@ export const addTodo = (title, text, completed, contact, image) => ({
 });
 
 export const updateTodo = (id, title, text, completed, contact, image) => ({
-	type: 'UPDATE_TODO',
+	type: types.UPDATE_TODO,
 	id,
 	title,
 	text,
@@ -17,39 +42,18 @@ export const updateTodo = (id, title, text, completed, contact, image) => ({
 	image,
 })
 
-export const toggleTodo = id => ({
-	type: 'TOGGLE_TODO',
+export const toggleTodo = (id, completed) => ({
+	type: types.TOGGLE_TODO,
 	id, 
+	completed,
 });
 
 export const removeTodo = id => ({
-	type: 'REMOVE_TODO',
-	id,
-});
-
-export const addContact = (id, contact) => ({
-	type: 'ADD_CONTACT',
-	id,
-	contact,
-});
-
-export const removeContact = (id, itemId) => ({
-	type: 'REMOVE_CONTACT',
-	id,
-});
-
-export const addImage = (id, image) => ({
-	type: 'ADD_IMAGE',
-	id,
-	image,
-});
-
-export const removeImage = id => ({
-	type: 'REMOVE_IMAGE',
+	type: types.REMOVE_TODO,
 	id,
 });
 
 export const setFilterText = filterText => ({
-	type: 'SET_FILTER_TEXT',
+	type: types.SET_FILTER_TEXT,
 	filterText
 })
