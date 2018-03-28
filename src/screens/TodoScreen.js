@@ -2,24 +2,58 @@ import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
 import { Platform, Button, Text, TextInput, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../components/Icon';
 import Colors from '../constants/colors';
 
 import { insertTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducers/todos.actions';
-import styles from './ScreenStyles';
+import styles from './TodoScreenStyles';
+
+class Contact extends Component {
+	render() {
+		if( ! this.props.contact ) {
+			return (
+				<View>
+					<Text>
+						Tap here to select a contact from your addressbook
+					</Text>
+				</View>
+			)
+ 		} else {
+			return (
+				<View>
+					<Text>
+						Contact Info Goes Here
+					</Text>
+				</View>
+			);
+		}
+	}
+}
+
+/*
+else {
+			return (
+				<View>
+					<Text style={{color='gray'}}>
+						Tap here to select a contact from your addressbook
+					</Text>
+				</View>
+			)
+		}
+*/
 
 class TodoScreen extends Component {
  
 	constructor(props) {
 		super(props);
-	 	let navProps;
+	 	let newState;
 	 	if( props.navigation.state.params ) {
-			navProps = props.navigation.state.params.item;
+			newState = props.navigation.state.params.item;
 		} else {
-			navProps = { title:'', text:'', completed:false, contact:'', image:''};
+			newState = { title:'', text:'', completed:false, contact:'', image:''};
 		}
-		const {id, title, text, completed, contact, image} = navProps;
-		this.state = {id, title, text, completed, contact, image};
+		const {id, title, text, completed, contact, image} = newState;
+		this.state = {id, title, text, completed, contact, image, error: props.error};
 	}
 	
 	toggleTodo = () => {
@@ -33,6 +67,10 @@ class TodoScreen extends Component {
 	
 	updateTodo = () => {
 		const {id, title, text, completed, contact, image} = this.state;
+		if( ! title ) {
+			this.setState({error:'Todo Title must not be left blank Todo Title must not be left blank Todo Title must not be '});
+			return;
+		}
 		if( id ) {
 			this.props.updateTodo(id, title, text, completed, contact, image);
 		} else {
@@ -42,45 +80,54 @@ class TodoScreen extends Component {
 	}
 
 	render() {
-		completedIconName = `${this.state.completed ? 'checked' : ''}-square-o`;
-
+		const iosIconName = `${this.state.completed ? 'ios-check' : 'ios-add-circle'}`;
+		const androidIconName = iosIconName;
 		return (
 		<View style={styles.container}>
-			<ScrollView>
-				<TextInput
-					placeholder="Enter Todo Title"
-					onChangeText = { title => this.setState({ title }) }
-					value = { this.state.title }
-					style={styles.textInput}
-				/>
-				<TextInput
-					multiline={true}
-					placeholder="Enter Text"
-					onChangeText = { text => this.setState({ text }) }
-					value = {this.state.text}
-					style={styles.textInput}
-				/>
-
-				<Text 
-					style={styles.textInput} 
-					onPress={this.toggleTodo}>
-					{ this.state.completed ? 'Completed' : 'Not Completed'}
-				</Text>
-
-				<View style={ styles.buttonBar }>
-	                <Button onPress={this.updateTodo} title={'OK'} />
+			<View style={{ flex:9 }}>
+				<ScrollView>
+					<TextInput
+						placeholder="Enter Todo Title"
+						onChangeText = { title => this.setState({ title }) }
+						value = { this.state.title }
+						style={styles.textInput}
+					/>
+					<TextInput
+						multiline={true}
+						placeholder="Enter Text"
+						onChangeText = { text => this.setState({ text }) }
+						value = {this.state.text}
+						style={styles.textInput}
+					/>
+					<Text 
+						style={styles.textInput} 
+						onPress={this.toggleTodo}>
+						{ this.state.completed ? 'Completed' : 'Not Completed'}
+					</Text>
+					<Contact />
+	            </ScrollView>
+	        </View>
+			<View style={{ flex:1, minHeight: 40}}>
+ 				<View style={ styles.buttonBar }>
 	                {
-	                	this.state.id && <Button onPress={this.removeTodo} title={'Delete'} />
+	                	this.state.id || <Text onPress={this.removeTodo} style={styles.deleteButton}>
+					                		{' Delete '}
+					                	</Text>
 	                }
-
+	                <Text onPress={this.updateTodo} style={styles.okButton}>
+	                	{' OK '}
+	                </Text>
 	            </View>
-            </ScrollView>
+	            <Text style={styles.errorText}>
+	            	{this.state.error}
+            	</Text>
+	         </View>
 		</View>
 	);}
 }
 
 const mapStateToProps = state => {
-    return { selectedId } = state.todos;
+    return { todos } = state.todos;
 };
 
 const TodoContainer = connect(mapStateToProps, { insertTodo, updateTodo, toggleTodo, removeTodo })(TodoScreen)

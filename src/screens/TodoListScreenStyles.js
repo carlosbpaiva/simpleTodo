@@ -23,9 +23,11 @@ const styles = StyleSheet.create({
     newTodo: {
     	flex: 3,
 	    fontSize: 18,
+        height:30,
     	backgroundColor: 'green',
     	color: 'white',
     	textAlign: 'center',
+        paddingTop:3,
     },
 
 

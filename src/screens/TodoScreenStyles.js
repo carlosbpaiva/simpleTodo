@@ -1,6 +1,52 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        width: '90%',
+    },
+
+    textInput: {
+        fontSize: 20,
+        margin: 10,
+    },
+
+    buttonBar: {
+        flexDirection: 'row-reverse',
+        flex: 1,
+        justifyContent: 'space-between',
+        left: 20,
+    },
+
+   okButton: {
+        fontSize: 18,
+        height:30,
+        width:80,
+        backgroundColor: 'green',
+        color: 'white',
+        textAlign: 'center',
+        paddingTop:3,
+    },
+
+   deleteButton: {
+        fontSize: 18,
+        height:30,
+        width:80,
+        backgroundColor: 'red',
+        color: 'white',
+        textAlign: 'center',
+        paddingTop:3,
+    },
+
+   errorText: {
+        fontSize: 18,
+        color: 'red',
+        textAlign: 'left',
+    },
+
+
+
     todoListContainer:{
         flex:1,
         flexDirection : 'column',
@@ -21,13 +67,6 @@ const styles = StyleSheet.create({
         marginLeft: 15,
     },
 
-	container: {
-		flex: 1,
-        justifyContent: 'flex-start',
-		width: '90%',
-		marginTop: 50,
-		margin: 20,
-	},
 
     FilterText: {
         fontSize: 18,
@@ -41,12 +80,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     text: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-    },
-    textInput: {
         fontSize: 20,
+        textAlign: 'center',
         margin: 10,
     },
     textMultilineInput: {
@@ -64,11 +99,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingTop: 10,
         paddingBottom: 10
-    },
-    buttonBar: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'space-around',
     },
 });
 

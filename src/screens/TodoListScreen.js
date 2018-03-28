@@ -19,7 +19,7 @@ class TopMenu extends React.Component {
         <Text 
           onPress={this.newTodo}
           style={styles.newTodo}>
-          New To-do
+          New Todo
         </Text>
       </View>
     )

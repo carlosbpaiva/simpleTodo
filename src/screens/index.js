@@ -35,7 +35,7 @@ const MainNavigator = StackNavigator(
 
 class MainScreen extends Component {
 	render() {
-		if( this.props.loggedIn ) {
+		if( ! this.props.loggedIn ) {
 			return(
 				<MainNavigator />
 			)
