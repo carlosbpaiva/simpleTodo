@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
-import { Platform, Button, Text, TextInput, View, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import { Button, Text, TextInput, View, StyleSheet, ScrollView, Alert, Share} from 'react-native';
 import { connect } from 'react-redux';
 import Icon from '../components/Icon';
 import Colors from '../constants/colors';
@@ -9,11 +9,16 @@ import { insertTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducer
 import styles from './TodoScreenStyles';
 
 class Contact extends Component {
+
+	attachContact = () => {
+		return( Alert.alert('Future Implementation') );
+	}
+
 	render() {
 		if( ! this.props.contact ) {
 			return (
 				<View>
-					<Text>
+					<Text style={styles.attachmentPlaceholder} onPress={this.attachContact}>
 						Tap here to select a contact from your addressbook
 					</Text>
 				</View>
@@ -79,6 +84,14 @@ class TodoScreen extends Component {
 		this.props.navigation.goBack();
 	}
 
+	shareTodo = () => {
+		Share.share({
+			message: 'ToDo: ' + this.state.title  + '\n'
+				+ this.state.text + '\n'
+				+ `${this.state.completed ? '': 'Not '} Completed`,
+		})
+	}
+
 	render() {
 		const iosIconName = `${this.state.completed ? 'ios-check' : 'ios-add-circle'}`;
 		const androidIconName = iosIconName;
@@ -109,14 +122,17 @@ class TodoScreen extends Component {
 	        </View>
 			<View style={{ flex:1, minHeight: 40}}>
  				<View style={ styles.buttonBar }>
+	                <Text onPress={this.updateTodo} style={styles.okButton}>
+	                	{' OK '}
+	                </Text>
+	                <Text onPress={this.shareTodo} style={styles.shareButton}>
+	                	{' Share '}
+	                </Text>
 	                {
 	                	this.state.id || <Text onPress={this.removeTodo} style={styles.deleteButton}>
 					                		{' Delete '}
 					                	</Text>
 	                }
-	                <Text onPress={this.updateTodo} style={styles.okButton}>
-	                	{' OK '}
-	                </Text>
 	            </View>
 	            <Text style={styles.errorText}>
 	            	{this.state.error}

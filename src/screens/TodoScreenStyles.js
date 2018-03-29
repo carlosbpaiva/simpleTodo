@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
         margin: 10,
     },
 
+    attachmentPlaceholder: {
+        fontSize: 20,
+        margin: 10,
+        color: '#d3d3d3',
+    },
+
     buttonBar: {
         flexDirection: 'row-reverse',
         flex: 1,
@@ -34,6 +40,16 @@ const styles = StyleSheet.create({
         height:30,
         width:80,
         backgroundColor: 'red',
+        color: 'white',
+        textAlign: 'center',
+        paddingTop:3,
+    },
+
+   shareButton: {
+        fontSize: 18,
+        height:30,
+        width:80,
+        backgroundColor: 'blue',
         color: 'white',
         textAlign: 'center',
         paddingTop:3,
