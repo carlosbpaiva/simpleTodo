@@ -20,17 +20,8 @@ class Contact extends Component {
 		let contactStyle = styles.attachmentPlaceholder;
 
 		if( this.props.selectedContact ) {
-			const contact = this.props.selectedContact;
 			contactStyle = styles.textInput;
-			contactText = contact.familyName
-				+ ',' + contact.givenName
-				+ ' ' + contact.middleName;
-			for( let email of contact.emailAddresses ){
-				contactText += '\n\t'+ email.label + ': ' + email.email;
-			}
-			for( let phone of contact.phoneNumbers ){
-				contactText += '\n\t'+ phone.label + ': ' + phone.number;
-			}
+			contactText = getContactAsText(this.props.selectedContact);
 		}
 		return (
 			<View>
@@ -42,6 +33,23 @@ class Contact extends Component {
 	}
 }
 const ContactContainer = connect( state => state.contact, {selectContact} )(Contact);
+
+const getContactAsText = contact => {
+	let contactText = '';
+	if( contact ) {
+		contactText = contact.familyName
+			+ ',' + contact.givenName
+			+ ' ' + contact.middleName;
+		for( let email of contact.emailAddresses ){
+			contactText += '\n\t'+ email.label + ': ' + email.email;
+		}
+		for( let phone of contact.phoneNumbers ){
+			contactText += '\n\t'+ phone.label + ': ' + phone.number;
+		}
+	}
+	return contactText;
+}
+
 	
 class TodoScreen extends Component {
 	constructor(props) {
@@ -89,11 +97,12 @@ class TodoScreen extends Component {
 	}
 
 	shareTodo = () => {
-		Share.share({
-			message: 'ToDo: ' + this.state.title  + '\n'
-				+ this.state.text + '\n'
-				+ `${this.state.completed ? '': 'Not '} Completed`,
-		})
+		const contactText = getContactAsText(this.props.selectedContact);
+		let message = 'ToDo: ' + this.state.title;
+		message += this.state.text? '\n' + this.state.text: "";
+		message += `\n${this.state.completed ? '': 'Not '} Completed`;
+		message += contactText ? `\n${contactText}`: '';
+		Share.share({ message });
 	}
 
 	render() {
