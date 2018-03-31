@@ -6,6 +6,7 @@ import { StackNavigator } from 'react-navigation';
 import LoginForm from './LoginForm';
 import TodoScreen from './TodoScreen';
 import TodoListScreen from './TodoListScreen';
+import ContactPickerScreen from './ContactPickerScreen';
 
 // import MainNavigator from '../navigation/MainTabNavigator';
 
@@ -27,6 +28,12 @@ const MainNavigator = StackNavigator(
 				return { title };
 			},
 		},
+		ContactPicker: {
+			screen: ContactPickerScreen,
+			navigationOptions: () => ({
+				title: 'Choose a contact' 
+			})
+		},
 	},
 	{
 		initialRouteName: 'TodoList',
@@ -35,7 +42,7 @@ const MainNavigator = StackNavigator(
 
 class MainScreen extends Component {
 	render() {
-		if( ! this.props.loggedIn ) {
+		if( this.props.loggedIn ) {
 			return(
 				<MainNavigator />
 			)

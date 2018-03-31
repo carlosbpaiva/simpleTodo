@@ -16,7 +16,7 @@ class LoginForm extends Component {
     }
 
     validateUser = (email, password) => {
-        if( ! email ) {
+        if( ! email ) { 
           this.props.loginFailure('Please input your email address ');
           return false;
         }
@@ -47,8 +47,8 @@ class LoginForm extends Component {
         }
         return(
             <View style={ styles.buttonBar }>
-                <Button onPress={this.onLoginPress} title={'Log in'} />
-                <Button onPress={this.onSignUpPress} title={'Sign Up'} />
+                <Text onPress={this.onLoginPress} style={styles.loginButton}> Log in </Text>
+                <Text onPress={this.onSignUpPress} style={styles.signupButton}> Sign Up </Text>
             </View>
             )
 	}
@@ -86,11 +86,6 @@ class LoginForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const props = { user, loggedIn, loading, error } = state.user;
-    return props;
-};
-
-const LoginContainer = connect(mapStateToProps, { signup, login, logout, loginFailure })(LoginForm)
+const LoginContainer = connect(state => state.user, { signup, login, logout, loginFailure })(LoginForm)
 
 export default LoginContainer

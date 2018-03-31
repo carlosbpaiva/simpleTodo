@@ -34,6 +34,27 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-around',
     },
+
+   loginButton: {
+        fontSize: 18,
+        height:30,
+        width:80,
+        backgroundColor: 'green',
+        color: 'white',
+        textAlign: 'center',
+        paddingTop:3,
+    },
+
+   signupButton: {
+        fontSize: 18,
+        height:30,
+        width:80,
+        backgroundColor: 'rgb(255,188,8)',
+        color: 'white',
+        textAlign: 'center',
+        paddingTop:3,
+    },
+
 });
 
 export default styles;

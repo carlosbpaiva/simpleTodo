@@ -7,9 +7,9 @@ import MainScreen from './src/screens';
 export default class App extends React.Component {
   render() {
     return (
-		<Provider store={ store }>
-			<MainScreen />
-		</Provider>
+    <Provider store={ store }>
+      <MainScreen />
+    </Provider>
     );
   }
 }

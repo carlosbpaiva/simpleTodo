@@ -1,5 +1,4 @@
 //reducerTests.js
-import todoApp from './';
 import todos from './todos'
 import * as actions from './todos.actions';
 

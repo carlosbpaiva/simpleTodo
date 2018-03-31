@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import { setFilterText, addTodo, toggleTodo } from '../redux/reducers/todos.actions';
+import { selectContact } from '../redux/reducers/contact.actions';
 import styles from './TodoListScreenStyles';
 
 class TopMenu extends React.Component {
-  //mockTodo = () => this.props.addTodo ('New Todo'+Math.random(1), 'Some Text', true, { 'name':'john'}, 'file://image.jpg');
   newTodo = () => 
     this.props.navigation.navigate('Todo')
   render () { 
@@ -66,7 +66,7 @@ class TodoList extends React.Component {
   }
 }
 
-const TodoListContainer = connect( state => ({...state.todos, ...state.user}), {toggleTodo} )(TodoList);
+const TodoListContainer = connect( state => ({...state.todos, ...state.user}), {toggleTodo, selectContact} )(TodoList);
 
 export default class TodoListScreen extends React.Component {
   render() {

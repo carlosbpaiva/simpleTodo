@@ -6,59 +6,56 @@ import Icon from '../components/Icon';
 import Colors from '../constants/colors';
 
 import { insertTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducers/todos.actions';
+import { selectContact } from '../redux/reducers/contact.actions';
 import styles from './TodoScreenStyles';
 
 class Contact extends Component {
 
 	attachContact = () => {
-		return( Alert.alert('Future Implementation') );
+   		this.props.navigation.navigate('ContactPicker', this.props.item.contact);
 	}
 
 	render() {
-		if( ! this.props.contact ) {
-			return (
-				<View>
-					<Text style={styles.attachmentPlaceholder} onPress={this.attachContact}>
-						Tap here to select a contact from your addressbook
-					</Text>
-				</View>
-			)
- 		} else {
-			return (
-				<View>
-					<Text>
-						Contact Info Goes Here
-					</Text>
-				</View>
-			);
+		let contactText = 'Tap here to select a contact from your addressbook';
+		let contactStyle = styles.attachmentPlaceholder;
+
+		if( this.props.selectedContact ) {
+			const contact = this.props.selectedContact;
+			contactStyle = styles.textInput;
+			contactText = contact.familyName
+				+ ',' + contact.givenName
+				+ ' ' + contact.middleName;
+			for( let email of contact.emailAddresses ){
+				contactText += '\n\t'+ email.label + ': ' + email.email;
+			}
+			for( let phone of contact.phoneNumbers ){
+				contactText += '\n\t'+ phone.label + ': ' + phone.number;
+			}
 		}
+		return (
+			<View>
+				<Text style={contactStyle} onPress={this.attachContact}>
+					{contactText}
+				</Text>
+			</View>
+		)
 	}
 }
-
-/*
-else {
-			return (
-				<View>
-					<Text style={{color='gray'}}>
-						Tap here to select a contact from your addressbook
-					</Text>
-				</View>
-			)
-		}
-*/
-
+const ContactContainer = connect( state => state.contact, {selectContact} )(Contact);
+	
 class TodoScreen extends Component {
- 
 	constructor(props) {
 		super(props);
+	    console.log(props); 
 	 	let newState;
 	 	if( props.navigation.state.params ) {
 			newState = props.navigation.state.params.item;
 		} else {
-			newState = { title:'', text:'', completed:false, contact:'', image:''};
+			newState = { title:'', text:'', completed:false, contact: null, image:''};
 		}
 		const {id, title, text, completed, contact, image} = newState;
-		this.state = {id, title, text, completed, contact, image, error: props.error};
+		this.props.selectContact(contact);
+		this.state = {id, title, text, completed, contact, image};
 	}
 	
 	toggleTodo = () => {
@@ -66,20 +63,27 @@ class TodoScreen extends Component {
 	}
 
 	removeTodo = () => {
-		this.props.removeTodo(this.state.id);
+		if( this.state.id ){
+			this.props.removeTodo(this.state.id);
+		}
 		this.props.navigation.goBack();
 	}
 	
 	updateTodo = () => {
+		console.log(this.props)
 		const {id, title, text, completed, contact, image} = this.state;
+
 		if( ! title ) {
-			this.setState({error:'Todo Title must not be left blank Todo Title must not be left blank Todo Title must not be '});
+			Alert.alert('Please fill-in Todo Title');
 			return;
 		}
+
 		if( id ) {
-			this.props.updateTodo(id, title, text, completed, contact, image);
+			this.props.updateTodo(id, title, text, completed, 
+				this.props.selectedContact, image);
 		} else {
-			this.props.insertTodo(title, text, completed, contact, image);
+			this.props.insertTodo(title, text, completed,
+				this.props.selectedContact, image);
 		}
 		this.props.navigation.goBack();
 	}
@@ -117,7 +121,9 @@ class TodoScreen extends Component {
 						onPress={this.toggleTodo}>
 						{ this.state.completed ? 'Completed' : 'Not Completed'}
 					</Text>
-					<Contact />
+					<ContactContainer 
+						item = {this.state}
+						navigation = {this.props.navigation} />
 	            </ScrollView>
 	        </View>
 			<View style={{ flex:1, minHeight: 40}}>
@@ -128,11 +134,9 @@ class TodoScreen extends Component {
 	                <Text onPress={this.shareTodo} style={styles.shareButton}>
 	                	{' Share '}
 	                </Text>
-	                {
-	                	this.state.id || <Text onPress={this.removeTodo} style={styles.deleteButton}>
-					                		{' Delete '}
-					                	</Text>
-	                }
+                	<Text onPress={this.removeTodo} style={styles.deleteButton}>
+                		{this.state.id ? ' Delete ' : ' Cancel '}
+                	</Text>
 	            </View>
 	            <Text style={styles.errorText}>
 	            	{this.state.error}
@@ -142,10 +146,7 @@ class TodoScreen extends Component {
 	);}
 }
 
-const mapStateToProps = state => {
-    return { todos } = state.todos;
-};
-
-const TodoContainer = connect(mapStateToProps, { insertTodo, updateTodo, toggleTodo, removeTodo })(TodoScreen)
+const TodoContainer = connect(state => state.contact,
+		{ insertTodo, updateTodo, toggleTodo, removeTodo, selectContact })(TodoScreen)
 
 export default TodoContainer;

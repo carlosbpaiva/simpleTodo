@@ -136,7 +136,7 @@ const todos = (state=INITIAL_STATE, action) => {
 		case 'SET_FILTER_TEXT':
 			return { ...state, filterText: action.filterText }
 		default:
-			return INITIAL_STATE;
+			return state;
 	}
 }
 
