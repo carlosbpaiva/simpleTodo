@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>todoapp</string>
+	<string>Simple ToDo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -35,14 +35,14 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Todo uses your photo library to attach pictures to your todos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Todo uses your camera to attatch pictures to your todos</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Todo uses your contacs info to attach them to your todos</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Todo uses your photo library to attach pictures to your todos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Todo uses your photo library to attach pictures to your todos</string>
 	<key>UILaunchStoryboardName</key>
