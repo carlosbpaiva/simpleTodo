@@ -37,7 +37,7 @@ class PhotoPicker extends Component {
   }
   
   loadPhotos() {
-      CameraRoll.getPhotos({ first: 1000000 })
+        CameraRoll.getPhotos({ first: 1000000 })
         .then(res => {
           return res.edges;
         }
