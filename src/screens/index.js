@@ -7,8 +7,6 @@ import LoginForm from './LoginForm';
 import TodoScreen from './TodoScreen';
 import TodoListScreen from './TodoListScreen';
 import ContactPickerScreen from './ContactPickerScreen';
-import PhotoPickerScreen from './PhotoPicker';
-import CameraScreen from './CameraScreen';
 
 const MainNavigator = StackNavigator(
 	{
@@ -34,18 +32,6 @@ const MainNavigator = StackNavigator(
 				title: 'Choose a contact' 
 			})
 		},
-		Camera:{
-			screen: CameraScreen,
-			navigationOptions: () => ({
-				title: 'Take a picture'
-			})
-		},
-		PhotoPicker: {
-			screen: PhotoPickerScreen,
-			navigationOptions: () => ({
-				title: 'Choose a picture'
-			})
-		}
 	},
 	{
 		initialRouteName: 'TodoList',

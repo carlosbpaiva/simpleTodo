@@ -13,7 +13,6 @@ import { selectImage } from '../redux/reducers/image.actions';
 import styles from './TodoScreenStyles';
 
 class Contact extends Component {
-
 	attachContact = () => {
    		this.props.navigation.navigate('ContactPicker', this.props.item.contact);
 	}
@@ -38,18 +37,33 @@ class Contact extends Component {
 const ContactContainer = connect( state => state.contact, {selectContact} )(Contact);
 
 class CameraImage extends Component {
-	takePicture = () => {
-   		this.props.navigation.navigate('Camera', this.props.item.image);
-	}
 
 	pickPhoto = () => {
-   		this.props.navigation.navigate('PhotoPicker', this.props.item.image);
+		const options = {
+			title: 'Choose a picture',
+			storageOptions: {
+				skipBackup: true,
+				path: 'images',
+			}
+		};
+
+		ImagePicker.showImagePicker(options, response => {
+			if (response.error) {
+				Alert.alert('ImagePicker Error: ', response.error);
+				return;
+			}
+			if (response.didCancel) {
+  				return;
+  			}
+  			Alert.alert('data:image/jpeg;base64,' + response.data);
+			this.props.selectImage( 'data:image/jpeg;base64,' + response.data );
+		});
 	}
 
 	render() {
 		let image = (
 			<Text style={styles.attachmentPlaceholder} >
-				Tap here to attach a picture to your todo (long press to open camera)
+				Tap here to attach a picture to your todo
 			</Text>
 		)
 		if( this.props.selectedImage ) {
@@ -62,7 +76,6 @@ class CameraImage extends Component {
 		}
 		return(
 			<TouchableOpacity 
-				onLongPress={this.takePicture}
 				onPress={this.pickPhoto}>
 				<View style={{justifyContent: 'space-around', alignItems:'center'}}>
 					{image}
@@ -71,56 +84,7 @@ class CameraImage extends Component {
 		)
 	}
 }
-
 const ImageContainer = connect( state => state.image, {selectImage} )(CameraImage);
-
-class PickImage extends Component {
-	render() {
-		if( ! this.props.selectedImage ) {
-			return (
-				<View>
-					<Text style={styles.attachmentPlaceholder} 
-						onPress={this.pickPhoto}>
-						Tap here to attach a picture to your todo
-					</Text>
-				</View>
-			)
-		} else {
-			return(
-				<Image
-					style={{width: 200, height: 300,
-						resizeMode: Image.resizeMode.contain}} 
-					source={{uri: this.props.selectedImage}}
-				/>
-			)
-		}
-
-	}
-
-	pickPhoto = () => {
-		var options = {
-			title: 'Select Picture',
-			storageOptions: {
-				skipBackup: true,
-				path: 'images'
-			}
-		};
-		ImagePicker.showImagePicker(options, (response) => {
-			console.log('Response = ', response);
-	
-			if (response.didCancel) {
-				console.log('User cancelled image picker');
-			}
-			else if (response.error) {
-				Alert.alert('Error: ', response.error);
-			}
-			else {
-	      		this.props.selectImage( 'data:image/jpg;base64,' + response.base64 )
-			}
-		});
-	}
-}
-//const ImageContainer = connect( state => state.image, {selectImage} )(PickImage);
 
 const getContactAsText = contact => {
 	let contactText = '';
