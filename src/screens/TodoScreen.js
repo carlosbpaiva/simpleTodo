@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
-import { Button, Text, TextInput, View, StyleSheet, ScrollView, Alert, Share} from 'react-native';
+import { Text, TextInput, Image, View, ScrollView, Alert, Share, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
 import Icon from '../components/Icon';
 import Colors from '../constants/colors';
 
+import ImagePicker from 'react-native-image-picker';
+
 import { insertTodo, updateTodo, toggleTodo, removeTodo } from '../redux/reducers/todos.actions';
 import { selectContact } from '../redux/reducers/contact.actions';
+import { selectImage } from '../redux/reducers/image.actions';
 import styles from './TodoScreenStyles';
 
 class Contact extends Component {
@@ -34,17 +37,106 @@ class Contact extends Component {
 }
 const ContactContainer = connect( state => state.contact, {selectContact} )(Contact);
 
+class CameraImage extends Component {
+	takePicture = () => {
+   		this.props.navigation.navigate('Camera', this.props.item.image);
+	}
+
+	pickPhoto = () => {
+   		this.props.navigation.navigate('PhotoPicker', this.props.item.image);
+	}
+
+	render() {
+		let image = (
+			<Text style={styles.attachmentPlaceholder} >
+				Tap here to attach a picture to your todo (long press to open camera)
+			</Text>
+		)
+		if( this.props.selectedImage ) {
+			image = (
+				<Image
+					style={{width: 200, height: 300, resizeMode: Image.resizeMode.contain}} 
+					source={{uri: this.props.selectedImage}}
+				/>
+			)
+		}
+		return(
+			<TouchableOpacity 
+				onLongPress={this.takePicture}
+				onPress={this.pickPhoto}>
+				<View style={{justifyContent: 'space-around', alignItems:'center'}}>
+					{image}
+				</View>
+			</TouchableOpacity>
+		)
+	}
+}
+
+const ImageContainer = connect( state => state.image, {selectImage} )(CameraImage);
+
+class PickImage extends Component {
+	render() {
+		if( ! this.props.selectedImage ) {
+			return (
+				<View>
+					<Text style={styles.attachmentPlaceholder} 
+						onPress={this.pickPhoto}>
+						Tap here to attach a picture to your todo
+					</Text>
+				</View>
+			)
+		} else {
+			return(
+				<Image
+					style={{width: 200, height: 300,
+						resizeMode: Image.resizeMode.contain}} 
+					source={{uri: this.props.selectedImage}}
+				/>
+			)
+		}
+
+	}
+
+	pickPhoto = () => {
+		var options = {
+			title: 'Select Picture',
+			storageOptions: {
+				skipBackup: true,
+				path: 'images'
+			}
+		};
+		ImagePicker.showImagePicker(options, (response) => {
+			console.log('Response = ', response);
+	
+			if (response.didCancel) {
+				console.log('User cancelled image picker');
+			}
+			else if (response.error) {
+				Alert.alert('Error: ', response.error);
+			}
+			else {
+	      		this.props.selectImage( 'data:image/jpg;base64,' + response.base64 )
+			}
+		});
+	}
+}
+//const ImageContainer = connect( state => state.image, {selectImage} )(PickImage);
+
 const getContactAsText = contact => {
 	let contactText = '';
 	if( contact ) {
 		contactText = contact.familyName
 			+ ',' + contact.givenName
 			+ ' ' + contact.middleName;
-		for( let email of contact.emailAddresses ){
-			contactText += '\n\t'+ email.label + ': ' + email.email;
+		if( contact.emailAddresses ) {
+			for( let email of contact.emailAddresses ){
+				contactText += '\n\t'+ email.label + ': ' + email.email;
+			}
 		}
-		for( let phone of contact.phoneNumbers ){
-			contactText += '\n\t'+ phone.label + ': ' + phone.number;
+		if( contact.phoneNumbers ) {
+			for( let phone of contact.phoneNumbers ){
+				contactText += '\n\t'+ phone.label + ': ' + phone.number;
+			}
 		}
 	}
 	return contactText;
@@ -59,10 +151,11 @@ class TodoScreen extends Component {
 	 	if( props.navigation.state.params ) {
 			newState = props.navigation.state.params.item;
 		} else {
-			newState = { title:'', text:'', completed:false, contact: null, image:''};
+			newState = { title:'', text:'', completed:false, contact: null, image: null};
 		}
 		const {id, title, text, completed, contact, image} = newState;
 		this.props.selectContact(contact);
+		this.props.selectImage(image);
 		this.state = {id, title, text, completed, contact, image};
 	}
 	
@@ -78,7 +171,6 @@ class TodoScreen extends Component {
 	}
 	
 	updateTodo = () => {
-		console.log(this.props)
 		const {id, title, text, completed, contact, image} = this.state;
 
 		if( ! title ) {
@@ -88,10 +180,10 @@ class TodoScreen extends Component {
 
 		if( id ) {
 			this.props.updateTodo(id, title, text, completed, 
-				this.props.selectedContact, image);
+				this.props.selectedContact, this.props.selectedImage);
 		} else {
 			this.props.insertTodo(title, text, completed,
-				this.props.selectedContact, image);
+				this.props.selectedContact, this.props.selectedImage);
 		}
 		this.props.navigation.goBack();
 	}
@@ -133,6 +225,9 @@ class TodoScreen extends Component {
 					<ContactContainer 
 						item = {this.state}
 						navigation = {this.props.navigation} />
+					<ImageContainer 
+						item = {this.state}
+						navigation = {this.props.navigation} />
 	            </ScrollView>
 	        </View>
 			<View style={{ flex:1, minHeight: 40}}>
@@ -147,15 +242,12 @@ class TodoScreen extends Component {
                 		{this.state.id ? ' Delete ' : ' Cancel '}
                 	</Text>
 	            </View>
-	            <Text style={styles.errorText}>
-	            	{this.state.error}
-            	</Text>
 	         </View>
 		</View>
 	);}
 }
 
-const TodoContainer = connect(state => state.contact,
-		{ insertTodo, updateTodo, toggleTodo, removeTodo, selectContact })(TodoScreen)
+const TodoContainer = connect(state => ({ selectedContact: state.contact.selectedContact, selectedImage: state.image.selectedImage }),
+		{ insertTodo, updateTodo, toggleTodo, removeTodo, selectContact, selectImage, })(TodoScreen)
 
 export default TodoContainer;

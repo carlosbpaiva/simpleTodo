@@ -40,7 +40,7 @@ function* toggleTodo( action ) {
 
 function* removeTodo( action ) {
 	const user = yield select( state => state.user);
-	yield call(rsf.database.delete,	'todos/' + user.userId + '/' + id);	
+	yield call(rsf.database.delete,	'todos/' + user.userId + '/' + action.id);	
 }
 
 export default function * todosRootSaga () {

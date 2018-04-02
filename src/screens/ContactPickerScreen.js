@@ -14,9 +14,6 @@ class ContactPickerScreen extends React.Component {
       if(err === 'denied'){
         Alert.alert("User DOES NOT have access to Contacts!");
         this.props.navigation.goBack();
-      } else {
-        // Contains only contacts matching "john"
-        console.log(contacts)
       }
     })
   }

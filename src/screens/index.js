@@ -7,8 +7,7 @@ import LoginForm from './LoginForm';
 import TodoScreen from './TodoScreen';
 import TodoListScreen from './TodoListScreen';
 import ContactPickerScreen from './ContactPickerScreen';
-
-// import MainNavigator from '../navigation/MainTabNavigator';
+import CameraScreen from './CameraScreen';
 
 const MainNavigator = StackNavigator(
 	{
@@ -34,6 +33,12 @@ const MainNavigator = StackNavigator(
 				title: 'Choose a contact' 
 			})
 		},
+		Camera:{
+			screen: CameraScreen,
+			navigationOptions: () => ({
+				title: 'Take picture to attach to ToDo'
+			})
+		}
 	},
 	{
 		initialRouteName: 'TodoList',
@@ -54,9 +59,4 @@ class MainScreen extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	const props = { loggedIn } = state.user;
-	return props;
-};
-
-export default MainScreenContainer = connect(mapStateToProps)(MainScreen);
+export default MainScreenContainer = connect(state => state.user)(MainScreen);

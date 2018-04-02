@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         flex: 1,
         justifyContent: 'space-between',
+        alignItems: 'center',
         left: 20,
     },
 

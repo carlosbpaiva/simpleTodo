@@ -69,6 +69,7 @@ class LoginForm extends Component {
                     onChangeText = {email => this.setState({ email })}
                     autoCorrect = {false}
                     autoCapitalize = 'none'
+                    keyboardType = 'email-address'
                 />
                 <TitledInput 
                     label = 'Password'

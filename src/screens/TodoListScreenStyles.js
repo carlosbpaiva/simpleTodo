@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+
 
 const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
 	},
-
 
     topMenuContainer: {
         flex: 1,
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
         paddingTop:3,
     },
 
-
 	todoListContainer:{
 	  flex:12,
 	  flexDirection : 'column',
@@ -46,16 +46,23 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 	},
 
-  todoDone: {
-    fontSize: 20,
-    color: 'green',
-    textDecorationLine: 'line-through'
-  },
+    todoDone: {
+        fontSize: 20,
+        color: 'green',
+        textDecorationLine: 'line-through'
+    },
 
-  todo: {
-    fontSize: 20,
-    color: 'red',
-  },
+    todo: {
+        fontSize: 20,
+        color: 'red',
+    },
+
+    picture: {
+        width: 200,
+        height: 300,
+        justifyContent:'center',
+        resizeMode: Image.resizeMode.contain,
+    }
 });
 
 export default styles;
