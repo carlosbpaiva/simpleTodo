@@ -35,6 +35,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Todo uses your photo library to attach pictures to your todos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Todo uses your camera to attatch pictures to your todos</string>
 	<key>NSContactsUsageDescription</key>

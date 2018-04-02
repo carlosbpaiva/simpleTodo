@@ -7,6 +7,7 @@ import LoginForm from './LoginForm';
 import TodoScreen from './TodoScreen';
 import TodoListScreen from './TodoListScreen';
 import ContactPickerScreen from './ContactPickerScreen';
+import PhotoPickerScreen from './PhotoPicker';
 import CameraScreen from './CameraScreen';
 
 const MainNavigator = StackNavigator(
@@ -36,7 +37,13 @@ const MainNavigator = StackNavigator(
 		Camera:{
 			screen: CameraScreen,
 			navigationOptions: () => ({
-				title: 'Take picture to attach to ToDo'
+				title: 'Take a picture'
+			})
+		},
+		PhotoPicker: {
+			screen: PhotoPickerScreen,
+			navigationOptions: () => ({
+				title: 'Choose a picture'
 			})
 		}
 	},
