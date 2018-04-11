@@ -5,11 +5,11 @@ import './src/config/ReactotronConfig';
 import MainScreen from './src/screens';
 
 export default class App extends React.Component {
-  render() {
-    return (
-    <Provider store={ store }>
-      <MainScreen />
-    </Provider>
-    );
-  }
+	render() {
+		return (
+			<Provider store={ store }>
+				<MainScreen />
+			</Provider>
+		);
+  	}
 }

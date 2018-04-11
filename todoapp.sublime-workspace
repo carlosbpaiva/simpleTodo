@@ -1,0 +1,730 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bott",
+				"bottleColors"
+			],
+			[
+				"bottl",
+				"bottleNumber"
+			],
+			[
+				"botto",
+				"bottomColor"
+			],
+			[
+				"n",
+				"number"
+			],
+			[
+				"vial",
+				"vialTop"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"ma",
+				"magentaProfundo"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"styl",
+				"style"
+			],
+			[
+				"co",
+				"container"
+			],
+			[
+				"const",
+				"contentContainerStyle"
+			],
+			[
+				"ta",
+				"takePicture"
+			],
+			[
+				"selet",
+				"selectedImage"
+			],
+			[
+				"sel",
+				"selectedImage"
+			],
+			[
+				"selecte",
+				"selectedIMage"
+			],
+			[
+				"Image",
+				"image"
+			],
+			[
+				"Ca",
+				"CameraScreen"
+			],
+			[
+				"cont",
+				"contactText"
+			],
+			[
+				"select",
+				"selectContact"
+			],
+			[
+				"gen",
+				"givenName"
+			],
+			[
+				"set",
+				"selectContact"
+			],
+			[
+				"filter",
+				"filterContacts"
+			],
+			[
+				"contact",
+				"contactList"
+			],
+			[
+				"sea",
+				"searchResults"
+			],
+			[
+				"search",
+				"searchContacts"
+			],
+			[
+				"A",
+				"Alert"
+			],
+			[
+				"conta",
+				"contactList"
+			],
+			[
+				"cn",
+				"contactList"
+			],
+			[
+				"atta",
+				"attachContact"
+			],
+			[
+				"compl",
+				"completedIconName"
+			],
+			[
+				"T",
+				"Text"
+			],
+			[
+				"e",
+				"error"
+			],
+			[
+				"use",
+				"userInfo"
+			],
+			[
+				"va",
+				"validateUser"
+			],
+			[
+				"na",
+				"navigation"
+			],
+			[
+				"toggl",
+				"toggleTodo"
+			],
+			[
+				"filte",
+				"filterText"
+			],
+			[
+				"fle",
+				"flex-start"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"Fi",
+				"FilterText"
+			],
+			[
+				"b",
+				"buttonBar"
+			],
+			[
+				"style",
+				"style"
+			],
+			[
+				"Te",
+				"Text"
+			],
+			[
+				"STY",
+				"style"
+			],
+			[
+				"C",
+				"Component"
+			],
+			[
+				"Todo",
+				"TodoScreen"
+			],
+			[
+				"i",
+				"image"
+			],
+			[
+				"s",
+				"sysId"
+			],
+			[
+				"sy",
+				"sys_id"
+			],
+			[
+				"u_dat",
+				"u_data_fim"
+			],
+			[
+				"u_da",
+				"u_data_inicio"
+			],
+			[
+				"tim",
+				"timeWorkedDoDia"
+			],
+			[
+				"a",
+				"aplicaRegistradores"
+			],
+			[
+				"time",
+				"timeValues"
+			],
+			[
+				"flex",
+				"flexDirection"
+			],
+			[
+				"Tex",
+				"TextInput"
+			],
+			[
+				"styles",
+				"styles"
+			],
+			[
+				"margin",
+				"marginBottom"
+			],
+			[
+				"rea",
+				"react-native"
+			],
+			[
+				"sys",
+				"sys_class_name"
+			],
+			[
+				"pl",
+				"planned_task"
+			],
+			[
+				"t",
+				"todoListItem"
+			],
+			[
+				"todoT",
+				"todoTitle"
+			],
+			[
+				"Pro",
+				"Provider"
+			],
+			[
+				"create",
+				"createStore"
+			],
+			[
+				"togg",
+				"toggleTodo"
+			],
+			[
+				"nex",
+				"nextItemId"
+			],
+			[
+				"item",
+				"itemId"
+			],
+			[
+				"sc",
+				"ScrollView"
+			],
+			[
+				"sca",
+				"showBackground"
+			],
+			[
+				"contr",
+				"contratos"
+			],
+			[
+				"asset",
+				"assetObj"
+			],
+			[
+				"ass",
+				"assetObj"
+			],
+			[
+				"con",
+				"conta"
+			],
+			[
+				"contra",
+				"contract"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "git",
+		"selected_items":
+		[
+			[
+				"git",
+				"git: status"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"git:sta",
+				"git: status"
+			],
+			[
+				"git:dif",
+				"git: diff current file inline"
+			],
+			[
+				"git:di",
+				"git: diff current file inline"
+			],
+			[
+				"git:stat",
+				"git: status"
+			],
+			[
+				"git:d",
+				"git: diff current file inline"
+			],
+			[
+				"git:s",
+				"git: status"
+			],
+			[
+				"git:",
+				"git: log"
+			],
+			[
+				"git:status",
+				"git: status"
+			],
+			[
+				"git:st",
+				"git: status"
+			],
+			[
+				"git: di",
+				"git: diff current file inline"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				":di",
+				"git: diff current file inline"
+			],
+			[
+				"ter",
+				"Terminal View: Open Bash Terminal"
+			],
+			[
+				"bran",
+				"git: branch"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			]
+		],
+		"width": 428.0
+	},
+	"console":
+	{
+		"height": 148.0,
+		"history":
+		[
+			"read",
+			"read+=1",
+			"read++",
+			"read",
+			"read+=1",
+			"read=0",
+			"a",
+			"a.add(12)",
+			"a",
+			"a.add(1)",
+			"a",
+			"a.add(1)",
+			"a.append(1)",
+			"a",
+			"a=set()",
+			"exit",
+			"import this",
+			"print()",
+			"help",
+			"?",
+			"ver",
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/july/todoapp"
+	],
+	"file_history":
+	[
+		"/Users/july/auraSoma/App.js",
+		"/Users/july/auraSoma/src/constants/colors.js",
+		"/Users/july/auraSoma/src/texts/pt/bottleInfo.js",
+		"/Users/july/auraSoma/src/constants/bottleColors.js",
+		"/Users/july/Downloads/aura-soma/Aura-Soma Artworks Brasil.html",
+		"/Users/july/Downloads/aura-soma/arquivos",
+		"/Users/july/Downloads/aura-soma/Equilibrium - the heart of Aura-Soma System.html",
+		"/Users/july/auraSoma/node_modules/react-native/Libraries/react-native/react-native-implementation.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/SalesForce/conta_felipe.xml",
+		"/Users/july/Downloads/aura-soma/renomeia.sh",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/SalesForce/get_attachments.sh",
+		"/Users/july/Downloads/sys_script-1.csv",
+		"/Users/july/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/Users/july/todoapp/src/screens/PhotoPicker.js",
+		"/Users/july/todoapp/src/screens/TodoScreen.js",
+		"/Users/july/todoapp/src/redux/reducers/contact.js",
+		"/Users/july/todoapp/src/screens/index.js",
+		"/Users/july/todoapp/ios/todoapp/Info.plist",
+		"/Users/july/todoapp/src/screens/TodoListScreenStyles.js",
+		"/Users/july/todoapp/node_modules/react-native/Libraries/Text/Text.js",
+		"/Users/july/todoapp/node_modules/react-native/Libraries/Renderer/ReactNativeRenderer-dev.js",
+		"/Users/july/todoapp/src/screens/TodoScreenStyles.js",
+		"/Users/july/todoapp/src/redux/reducers/user.js",
+		"/Users/july/todoapp/src/screens/ContactPickerScreen.js",
+		"/Users/july/todoapp/src/screens/CameraScreen.js",
+		"/Users/july/todoapp/src/redux/reducers/index.js",
+		"/Users/july/todoapp/src/screens/CameraScreenStyles.js",
+		"/Users/july/todoapp/src/screens/LoginForm.js",
+		"/Users/july/todoapp/src/redux/reducers/image.js",
+		"/Users/july/todoapp/src/redux/reducers/image.actions.js",
+		"/Users/july/todoapp/src/redux/reducers/image.test.js",
+		"/Users/july/todoapp/app.json",
+		"/Users/july/todoapp/src/redux/reducers/todos.js",
+		"/Users/july/todoapp/src/screens/TodoListScreen.js",
+		"/Users/july/todoapp/src/redux/reducers/contact.actions.js",
+		"/Users/july/todoapp/src/redux/reducers/contact.test.js",
+		"/Users/july/todoapp/src/redux/sagas/index.js",
+		"/Users/july/todoapp/src/screens/LoginFormStyles.js",
+		"/Users/july/todoapp/src/redux/sagas/todos.js",
+		"/Users/july/todoapp/src/screens/ContactPickerScreenStyles.js",
+		"/Users/july/todoapp/App.js",
+		"/Users/july/todoapp/src/redux/sagas/contact.js",
+		"/Users/july/simple-todo/src/redux/sagas/contact.js",
+		"/Users/july/simple-todo/node_modules/react-native-contacts/README.md",
+		"/Users/july/simple-todo/src/screens/ContactPickerScreen.js",
+		"/Users/july/simple-todo/src/screens/TodoScreen.js",
+		"/Users/july/todoapp/package.json",
+		"/Users/july/simple-todo/app.json",
+		"/Users/july/simple-todo/src/redux/reducers/contact.js",
+		"/Users/july/simple-todo/src/redux/reducers/contact.actions.js",
+		"/Users/july/simple-todo/src/screens/ContactPickerScreenStyles.js",
+		"/Users/july/simple-todo/src/redux/reducers/index.js",
+		"/Users/july/simple-todo/src/screens/index.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Network/XHRInterceptor.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Network/XMLHttpRequest.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Renderer/ReactNativeRenderer-dev.js",
+		"/Users/july/simple-todo/node_modules/fbjs/lib/warning.js",
+		"/Users/july/simple-todo/src/redux/reducers/contact.test.js",
+		"/Users/july/simple-todo/src/redux/reducers/todos.test.js",
+		"/Users/july/simple-todo/src/redux/reducers/todos.actions.js",
+		"/Users/july/simple-todo/src/screens/ContactSelectionScreenStyles.js",
+		"/Users/july/simple-todo/src/screens/TodoScreenStyles.js",
+		"/Users/july/RNAcademyCourse/src/navigators/index.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/BatchedBridge/MessageQueue.js",
+		"/Users/july/simple-todo/src/screens/TodoListScreenStyles.js",
+		"/Users/july/simple-todo/src/screens/TodoListScreen.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Lists/VirtualizedList.js",
+		"/Users/july/simple-todo/src/redux/sagas/todos.js",
+		"/Users/july/simple-todo/src/redux/reducers/user.js",
+		"/Users/july/simple-todo/src/redux/reducers/todos.js",
+		"/Users/july/Downloads/sys_script(1).csv",
+		"/Users/july/Downloads/sys_script.csv",
+		"/Users/july/Downloads/sys_script_include.csv",
+		"/Users/july/simple-todo/src/redux/reducers/user.actions.js",
+		"/Users/july/simple-todo/src/redux/sagas/user.js",
+		"/Users/july/simple-todo/src/screens/LoginForm.js",
+		"/Users/july/simple-todo/package.json",
+		"/Users/july/simple-todo/__tests__/App-test.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Components/Touchable/Touchable.js",
+		"/Users/july/cat/rn/redux/sagas/messages.js",
+		"/Users/july/RNAcademyCourse/src/screens/DisplayElementsScreen/DisplayElementsScreen.js",
+		"/Users/july/simple-todo/src/screens/LoginFormStyles.js",
+		"/Users/july/simple-todo/src/screens/ScreenStyles.js",
+		"/Users/july/simple-todo/node_modules/event-target-shim/lib/event-target.js",
+		"/Users/july/simple-todo/src/navigation/MainTabNavigator.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/js/DiaDeTrabalho.js",
+		"/Users/july/simple-todo/node_modules/metro/src/lib/polyfills/require.js",
+		"/Users/july/simple-todo/App.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/vendor/emitter/EventEmitter.js",
+		"/Users/july/simple-todo/src/index.js",
+		"/Users/july/simple-todo/node_modules/react-native/Libraries/Components/Touchable/TouchableOpacity.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/js/WittelApontamento.js",
+		"/Users/july/Downloads/sys_script_include_068f3b736fb81f406750e4064b3ee499.xml",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/js/.gitignore",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/ServiceNow/wittelTimeAppointmentFunctions2.js",
+		"/private/tmp/DiaDeTrabalho2.js",
+		"/private/tmp/DiaDeTrabalho.js",
+		"/Users/july/simple-todo/src/components/componentStyles.js",
+		"/Users/july/simple-todo/src/components/TitledInput.js",
+		"/Users/july/simple-todo/src/redux/reducers/todosFilter.js",
+		"/Users/july/simple-todo/src/redux/actions/index.js",
+		"/Users/july/simple-todo/src/redux/reducers/todosFilter.test.js",
+		"/Users/july/simple-todo/src/redux/reducers/todosFilter.action.js",
+		"/Users/july/simple-todo/src/constants/colors.js",
+		"/Users/july/RNAcademyCourse/src/screens/AddNewElementScreen/AddNewElementScreen.js",
+		"/Users/july/simple-todo/src/redux/store.js",
+		"/Users/july/cat/rn/redux/store.js",
+		"/Users/july/simple-todo/src/redux/rsf.js",
+		"/Users/july/simple-todo/src/redux/sagas/index.js",
+		"/Users/july/simple-todo/src/redux/index.js",
+		"/Users/july/cat/rn/redux/reducers/user.actions.js",
+		"/Users/july/cat/rn/components/Chat.js",
+		"/Users/july/simple-todo/src/redux/reducers/userInputs.test.js",
+		"/Users/july/cat/rn/redux/reducers/messages.actions.js",
+		"/Users/july/simple-todo/src/redux/enhancers/middlewares.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/WittelCustoTarefa.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/ServiceNow/testeREST.py",
+		"/Users/july/cat/rn/redux/reducers/user.js",
+		"/Users/july/todoapp/src/actions/index.js",
+		"/Users/july/todoapp/src/reducers/userInputs.js",
+		"/Users/july/todoapp/src/reducers/userInputs.test.js",
+		"/Users/july/todoapp/src/reducers/configureStore.js",
+		"/Users/july/todoapp/src/reducers/index.js",
+		"/Users/july/todoapp/__tests__/App-test.js",
+		"/Users/july/todoapp/src/reducers/todosFilter.js",
+		"/Users/july/todoapp/src/reducers/todosFilter.test.js",
+		"/Users/july/todoapp/src/navigation/MainTabNavigator.js",
+		"/Users/july/todoapp/src/reducers/todos.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GitSavvy":
+	{
+		"height": 102.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 102.0
+	},
+	"output.exec":
+	{
+		"height": 102.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.show_commit_info":
+	{
+		"height": 102.0
+	},
+	"pinned_build_system": "",
+	"project": "todoapp.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 318.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
