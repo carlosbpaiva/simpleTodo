@@ -1,4 +1,4 @@
-import { call, fork, put, take, takeEvery, select } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import rsf from '../rsf'
 
 import {
@@ -14,7 +14,6 @@ import { loadTodos } from '../reducers/todos.actions';
 
 function * signupSaga (action) {
   try {
-    const user = yield select( state => state.user);
     const data = yield call(rsf.auth.createUserWithEmailAndPassword, action.email, action.password );
     yield put(loginSuccess(data.uid));
   } catch (error) {
@@ -35,9 +34,9 @@ function* loadDataSaga(action) {
   try {
     const usersTodos = yield call(rsf.database.read, 'todos/' + action.userId);
     const items = [];
-    for( id in usersTodos ) {
-        let{ title, text, completed, contact, image, } = usersTodos[id];
-        items.push({ id, title, text, completed, contact, image, });
+    for( var id in usersTodos ) {
+      let{ title, text, completed, contact, image, } = usersTodos[id];
+      items.push({ id, title, text, completed, contact, image, });
     }
     yield put(loginSuccess());
     yield put(loadTodos(items));
@@ -57,9 +56,9 @@ function * logoutSaga () {
 
 export default function * loginRootSaga () {
   yield [
-    takeEvery(types.SIGNUP.REQUEST, signupSaga),
-    takeEvery(types.LOGIN.REQUEST, loginSaga),
-    takeEvery(types.LOGOUT.REQUEST, logoutSaga),
-    takeEvery(types.LOAD_USER_DATA, loadDataSaga),
+  takeEvery(types.SIGNUP.REQUEST, signupSaga),
+  takeEvery(types.LOGIN.REQUEST, loginSaga),
+  takeEvery(types.LOGOUT.REQUEST, logoutSaga),
+  takeEvery(types.LOAD_USER_DATA, loadDataSaga),
   ];
 }

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"R",
+				"isRequired"
+			],
+			[
+				"Prop",
+				"PropTypes"
+			],
+			[
 				"bott",
 				"bottleColors"
 			],
@@ -307,6 +315,33 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/screens/ContactPickerScreen.js",
+			"settings":
+			{
+				"buffer_size": 2458,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/screens/TodoScreen.js",
+			"settings":
+			{
+				"buffer_size": 6115,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/screens/ContactPickerScreenStyles.js",
+			"settings":
+			{
+				"buffer_size": 628,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -331,10 +366,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "git",
+		"height": 389.0,
+		"last_filter": "linter",
 		"selected_items":
 		[
+			[
+				"linter",
+				"SublimeLinter: Show All Errors"
+			],
 			[
 				"git",
 				"git: status"
@@ -454,10 +493,28 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/july/todoapp"
+		"/Users/july/todoapp",
+		"/Users/july/todoapp/src",
+		"/Users/july/todoapp/src/components",
+		"/Users/july/todoapp/src/components/__tests__",
+		"/Users/july/todoapp/src/components/__tests__/__snapshots__",
+		"/Users/july/todoapp/src/screens"
 	],
 	"file_history":
 	[
+		"/Users/july/todoapp/src/screens/LoginForm.js",
+		"/Users/july/todoapp/src/components/TitledInput.js",
+		"/Users/july/todoapp/app.json",
+		"/Users/july/todoapp/index.js",
+		"/Users/july/todoapp/.editorconfig",
+		"/Users/july/todoapp/src/screens/TodoListScreen.js",
+		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/SalesForce/criaCaso.sh",
+		"/Users/july/todoapp/.eslintrc",
+		"/Users/july/todoapp/package.json",
+		"/Users/july/todoapp/App.js",
+		"/Users/july/todoapp/src/components/componentStyles.js",
+		"/Users/july/todoapp/src/components/Icon.js",
+		"/Users/july/todoapp/src/components/StyledText.js",
 		"/Users/july/auraSoma/App.js",
 		"/Users/july/auraSoma/src/constants/colors.js",
 		"/Users/july/auraSoma/src/texts/pt/bottleInfo.js",
@@ -485,26 +542,21 @@
 		"/Users/july/todoapp/src/screens/CameraScreen.js",
 		"/Users/july/todoapp/src/redux/reducers/index.js",
 		"/Users/july/todoapp/src/screens/CameraScreenStyles.js",
-		"/Users/july/todoapp/src/screens/LoginForm.js",
 		"/Users/july/todoapp/src/redux/reducers/image.js",
 		"/Users/july/todoapp/src/redux/reducers/image.actions.js",
 		"/Users/july/todoapp/src/redux/reducers/image.test.js",
-		"/Users/july/todoapp/app.json",
 		"/Users/july/todoapp/src/redux/reducers/todos.js",
-		"/Users/july/todoapp/src/screens/TodoListScreen.js",
 		"/Users/july/todoapp/src/redux/reducers/contact.actions.js",
 		"/Users/july/todoapp/src/redux/reducers/contact.test.js",
 		"/Users/july/todoapp/src/redux/sagas/index.js",
 		"/Users/july/todoapp/src/screens/LoginFormStyles.js",
 		"/Users/july/todoapp/src/redux/sagas/todos.js",
 		"/Users/july/todoapp/src/screens/ContactPickerScreenStyles.js",
-		"/Users/july/todoapp/App.js",
 		"/Users/july/todoapp/src/redux/sagas/contact.js",
 		"/Users/july/simple-todo/src/redux/sagas/contact.js",
 		"/Users/july/simple-todo/node_modules/react-native-contacts/README.md",
 		"/Users/july/simple-todo/src/screens/ContactPickerScreen.js",
 		"/Users/july/simple-todo/src/screens/TodoScreen.js",
-		"/Users/july/todoapp/package.json",
 		"/Users/july/simple-todo/app.json",
 		"/Users/july/simple-todo/src/redux/reducers/contact.js",
 		"/Users/july/simple-todo/src/redux/reducers/contact.actions.js",
@@ -577,25 +629,18 @@
 		"/Users/july/Dropbox/Clientes/Fastlane/Wittel/ServiceNow/testeREST.py",
 		"/Users/july/cat/rn/redux/reducers/user.js",
 		"/Users/july/todoapp/src/actions/index.js",
-		"/Users/july/todoapp/src/reducers/userInputs.js",
-		"/Users/july/todoapp/src/reducers/userInputs.test.js",
-		"/Users/july/todoapp/src/reducers/configureStore.js",
-		"/Users/july/todoapp/src/reducers/index.js",
-		"/Users/july/todoapp/__tests__/App-test.js",
-		"/Users/july/todoapp/src/reducers/todosFilter.js",
-		"/Users/july/todoapp/src/reducers/todosFilter.test.js",
-		"/Users/july/todoapp/src/navigation/MainTabNavigator.js",
-		"/Users/july/todoapp/src/reducers/todos.js"
+		"/Users/july/todoapp/src/reducers/userInputs.js"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
 		"height": 101.0,
 		"where_history":
 		[
+			"/Users/july/todoapp/src"
 		]
 	},
 	"find_state":
@@ -603,6 +648,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console",
+			"2",
+			"MonoText",
+			"react-native-maps",
+			"expo"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -620,8 +670,122 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/screens/ContactPickerScreen.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								63
+							]
+						],
+						"settings":
+						{
+							"SL.101.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"git_savvy.repo_path": "/Users/july/todoapp",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/screens/TodoScreen.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								232,
+								232
+							]
+						],
+						"settings":
+						{
+							"SL.104.region_keys":
+							[
+								"sublime_linter.protected_regions",
+								"SL.eslint.Gutter.region.redish markup.deleted.sublime_linter markup.error.sublime_linter.dot",
+								"SL.eslint.Highlights.|region.redish markup.deleted.sublime_linter markup.error.sublime_linter|32"
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"git_savvy.repo_path": "/Users/july/todoapp",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/screens/ContactPickerScreenStyles.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								480,
+								480
+							]
+						],
+						"settings":
+						{
+							"SL.103.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"git_savvy.repo_path": "/Users/july/todoapp",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -662,7 +826,7 @@
 	},
 	"output.SublimeLinter":
 	{
-		"height": 0.0
+		"height": 102.0
 	},
 	"output.SublimeLinter Messages":
 	{

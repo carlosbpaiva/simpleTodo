@@ -1,4 +1,4 @@
-import { call, fork, put, take, takeEvery, select } from 'redux-saga/effects'
+import { call, put, takeEvery, select } from 'redux-saga/effects'
 import rsf from '../rsf'
 
 import {  addTodo, types } from '../reducers/todos.actions'

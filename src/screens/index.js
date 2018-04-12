@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 
@@ -39,6 +39,9 @@ const MainNavigator = StackNavigator(
 );
 
 class MainScreen extends Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+  }
 	render() {
 		if( this.props.loggedIn ) {
 			return(
@@ -51,5 +54,5 @@ class MainScreen extends Component {
 		}
 	}
 }
-
-export default MainScreenContainer = connect(state => state.user)(MainScreen);
+const MainScreenContainer = connect(state => state.user)(MainScreen);
+export default MainScreenContainer;

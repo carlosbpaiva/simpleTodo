@@ -24,6 +24,7 @@ const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 middlewares.push(sagaMiddleware);
 
+/* global __DEV__ */
 if (__DEV__) {
 	enhancers.push(composeWithDevTools(applyMiddleware(...middlewares)))
 } else {

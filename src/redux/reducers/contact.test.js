@@ -3,6 +3,7 @@ import { initialState, selectContact } from './contact.actions';
 
 const state1 = {...initialState};
 const newState1 = {...state1, selectedContact: {'name': 'João'} };
+
 test(
 	'Set Contact Filter', () => {
 		expect( 

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default styles = StyleSheet.create({
+export default StyleSheet.create({
     inputStyle: {
         paddingRight: 5,
         paddingLeft: 5,
@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '200',
         flex: 1,
-        height: 40
+        height: 40,
     },
     labelStyle: {
         fontSize: 12,

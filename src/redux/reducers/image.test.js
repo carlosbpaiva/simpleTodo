@@ -3,6 +3,7 @@ import { initialState, selectImage } from './image.actions';
 
 const state1 = {...initialState};
 const newState1 = {...state1, selectedImage: 'imageData' };
+
 test(
 	'Set Contact Filter', () => {
 		expect( 
