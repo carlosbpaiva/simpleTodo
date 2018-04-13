@@ -14,8 +14,8 @@ import { loadTodos } from '../reducers/todos.actions';
 
 function * signupSaga (action) {
   try {
-    const data = yield call(rsf.auth.createUserWithEmailAndPassword, action.email, action.password );
-    yield put(loginSuccess(data.uid));
+    const userInfo = yield call(rsf.auth.createUserWithEmailAndPassword, action.email, action.password );
+    yield put(loginSuccess(userInfo.email, userInfo.uid));
   } catch (error) {
     yield put(loginFailure(error.message));
   }
@@ -24,7 +24,7 @@ function * signupSaga (action) {
 function * loginSaga (action) {
   try {
     const userInfo = yield call(rsf.auth.signInWithEmailAndPassword, action.email, action.password );
-    yield put(loadUserData(userInfo.email, userInfo.uid));
+    yield put(loadUserData(userInfo.uid));
   } catch (error) {
     yield put(loginFailure(error.message));
   }

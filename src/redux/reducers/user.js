@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   loggedIn: false,
   userId: null,
+  email: null,
 }
 
 export default function userReducer (state = initialState, action = {}) {
@@ -18,7 +19,6 @@ export default function userReducer (state = initialState, action = {}) {
       return {
         ...state,
         userId: action.userId,
-        email: action.email,
         error: '',
       }
     case types.LOGIN.SUCCESS:
@@ -26,7 +26,9 @@ export default function userReducer (state = initialState, action = {}) {
         ...state,
         loading: false,
         loggedIn: true,
-      }
+        email: action.email,
+        userId: action.userId,
+       }
     case types.LOGIN.FAILURE:
       return {
         ...state,

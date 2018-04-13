@@ -27,14 +27,15 @@ export const signup = (email, password) => ({
   password
 })
 
-export const loadUserData = (email, userId) => ({
+export const loadUserData = (userId) => ({
   type: types.LOAD_USER_DATA,
-  email,
   userId,
 })
 
-export const loginSuccess = () => ({
-    type: types.LOGIN.SUCCESS,
+export const loginSuccess = (email, userId) => ({
+  type: types.LOGIN.SUCCESS,
+  email,
+  userId
 })
 
 export const loginFailure = error => ({

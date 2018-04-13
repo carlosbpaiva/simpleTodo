@@ -31,7 +31,7 @@ class Contact extends Component {
     }
     return (
       <View>
-        <TouchableOpacity onPress={this.props.attachContact}>
+        <TouchableOpacity onPress={this.attachContact}>
           <Text style={contactStyle}>
             {contactText}
           </Text>
@@ -65,7 +65,6 @@ class CameraImage extends Component {
       if (response.didCancel) {
         return;
       }
-      Alert.alert('data:image/jpeg;base64,' + response.data);
       this.props.selectImage( 'data:image/jpeg;base64,' + response.data );
     });
   }
@@ -122,7 +121,7 @@ class TodoScreen extends Component {
     navigation: PropTypes.object.isRequired,
     item: PropTypes.object,
     selectedContact: PropTypes.object,
-    selectedImage: PropTypes.object,
+    selectedImage: PropTypes.string,
     selectContact: PropTypes.func.isRequired,
     selectImage: PropTypes.func.isRequired,
     removeTodo: PropTypes.func.isRequired,
